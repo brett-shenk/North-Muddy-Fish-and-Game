@@ -1,5 +1,5 @@
 # North Muddy Fish & Game Association
-[Live](https://www.northmuddy.com/) &nbsp; | &nbsp; [dev](http://192.168.0.241:8080/) &nbsp; | &nbsp; [Database](http://192.168.0.241:8282/?server=192.168.0.241%3A3306) 
+[Live](https://www.northmuddy.com/) &nbsp;
 
 ## Getting Started
 Run `npm install`

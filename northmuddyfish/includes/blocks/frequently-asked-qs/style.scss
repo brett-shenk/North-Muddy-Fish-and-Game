@@ -1,0 +1,78 @@
+@charset "utf-8";
+
+// Variables, Tools, Mixins
+@import "../../../assets/sass/setup/variables";
+@import "../../../assets/sass/setup/tools";
+// @import "../../../assets/sass/setup/animations";
+
+.frequently-asked-q-container{
+    margin-top: 3.14em;
+    
+    & ~ .frequently-asked-q-container{
+        margin-top: 0;
+    }
+    & > .wp-block-columns {
+        margin-bottom: 0;
+    }
+    .frequently-asked-header{
+        font-size: convert(32px, "em");
+    }
+
+    .wp-block-column > .acf-innerblocks-container{
+        margin: 0!important;
+    }
+    .accordion-container{
+        display: flex;
+        flex-direction: column;
+
+        .accordion-header{
+            font-size: convert(24px, "em");
+            font-weight: bold;
+            position: relative;
+            cursor: pointer;
+            padding: 0.9em 3.1em 0.9em 0.7em;
+
+            @media (max-width: 1200px){
+                font-size: convert(22px, "em");
+                padding: 0.9em 2.3em 0.9em 0.7em;
+            }
+            &:after{
+                transform: translateY(-50%) rotate(90deg);
+                position: absolute;
+                right: 0.5em;
+                top: 50%;
+                font-size: 2em;
+
+                @media (max-width: 1200px){
+                    right: 0.1em;
+                }
+            }
+        }
+        .acf-innerblocks-container{
+            visibility: hidden;
+            overflow: hidden;
+            transition: .3s height ease-out;
+
+            & > *{
+                padding: 0 convert(18px, em) convert(18px, em) convert(18px, em);
+            }
+        }
+        &.active{
+            .accordion-header{
+                color: $color_third;
+            }
+            .accordion-header:after{
+                transform: translateY(-50%) rotate(-90deg);
+                color: $color_third;
+            }
+        }
+    }
+}
+
+// WP Admin Only
+.is-root-container{
+    .accordion-container .acf-innerblocks-container{
+        overflow-x: hidden;
+        overflow-y: visible;
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "version": "1.0.0",
+    "name": "shenk/slick-slider",
+    "title": "Slider",
+    "description": "A modular slider that lets you use the base wordpress blocks.",
+    "keywords": [ "slider", "carousel", "carrousel", "conveyor belt", "slick slider" ],
+    "icon": "slides",
+    "category": "design",
+    "supports": {
+        "jsx": true,
+        "html": false,
+        "align": true,
+        "className": false,
+        "customClassName": false,
+        "spacing": {
+            "margin": ["top", "right", "bottom", "left"],
+            "padding": false,
+            "blockGap": [ "horizontal", "vertical" ]
+        }
+    },
+    "style": [ "block-slick-slider", "slick-slider-css" ],
+    "editorStyle":[ "block-editor-slick-slider" ],
+    "viewScript": [ "file:./dist/script.min.js", "slick-slider-js" ],
+    "acf": {
+        "mode": "preview",
+	    "renderTemplate": "includes/blocks/slick-slider/block.php"
+    },
+    "example": {
+        "attributes": {
+            "sv2_dots": true,
+            "sv2_arrows": true,
+            "sv2_autoplay": false,
+            "sv2_autoplay_speed": 5000,
+            "sv2_slides_to_show": 1,
+            "sv2_slides_to_scroll": 1,
+            "sv2_infinite_loop": false
+        }
+    }
+}

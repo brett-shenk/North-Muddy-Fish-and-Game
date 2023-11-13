@@ -1,0 +1,112 @@
+/**
+ * Dynamically Generate z-index based on name position
+ * 
+ * Ex: map-get($z-layers, "z-index-menu");
+**/
+$z-layers-names: ("slider-arrows", "resources-menu", "button", "site-header");
+$z-layers: ();
+
+$i: 0;
+@each $layer-name in $z-layers-names {
+	$i: $i + 1;
+	$css-var-name: "z-index-" + $layer-name;
+
+	$z-layers: map-merge(
+		$z-layers,
+		($css-var-name: $i),
+	);
+}
+
+
+/**
+ * @package			Convert Functions
+ * 
+ * @author			Niklas Postulart
+ * @version			1.0
+ * @license			MIT  https://choosealicense.com/licenses/mit/
+ * @copyright	 	2022
+ * @link			https://gist.github.com/npostulart/4de142bf2874c1802a15
+ * 
+ * Ex: 				font-size: convert( 23px, 'em' );
+**/
+$convertBase: 16px; // Default
+@function convert($value, $convertUnit, $convertBase: $convertBase) {
+  	$currentUnit: unit($value);
+  	$strippedValue: $value / ($value * 0 + 1);
+  	@if not unitless($convertBase) {
+  	  	@if unit($convertBase) != px {
+  	  		@error "Not supported unit '#{unit($convertBase)}' as convert base!";
+  	  	}
+  	  	$convertBase: $convertBase / ($convertBase * 0 + 1);
+  	}
+
+  	@if $currentUnit == px {
+  	  	@if $convertUnit == 'em' {
+  	  	  	@return 0em + ($strippedValue / $convertBase);
+  	  	}
+  	  	@else if $convertUnit == '%' {
+  	  	  	@return percentage($strippedValue / $convertBase);
+  	  	}
+  	}
+  	@else if $currentUnit == em {
+  	  	@if $convertUnit == 'px' {
+  	    	@return 0px + ($strippedValue * $convertBase);
+  	  	}
+  	  	@else if $convertUnit == '%' {
+  	    	@return percentage($strippedValue);
+  	  	}
+  	}
+  	@else if $currentUnit == '%' {
+  	  	@if $convertUnit == 'px' {
+  	    	@return 0em + ($strippedValue * $convertBase / 100);
+  	  	}
+  	  	@else if $convertUnit == 'em' {
+  	    	@return 0em + ($strippedValue / 100);
+  	  	}
+  	}
+  	@else if $currentUnit == pt {
+  	  	@if $convertUnit == 'px' {
+  	    	@return 0px + ($strippedValue * 1.3333);
+  	  	}
+  	  	@else if $convertUnit == 'em' {
+  	    	@return 0em + ($strippedValue / 12);
+  	  	}
+  	  	@else if $convertUnit == '%' {
+  	      	@return percentage($strippedValue / 12)
+  	  	}
+  	}
+  	@error "Can't convert '#{$value}' to unit '#{$convertUnit}'!";
+}
+
+
+/**
+ * Mixins
+**/
+@mixin wrap {
+	margin-left: auto;
+    margin-right: auto;
+	width: 100%;
+	max-width: var(--wp--style--global--content-size);
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+@mixin pseudo-element($width: 100%, $z-index: -1) {
+	content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $width;
+    height: 100%;
+	z-index: $z-index;
+}
+
+@mixin clearfix {
+	&:before, &:after {
+		display: table;
+		content: "";
+	}
+	&:after {
+		clear: both;
+	}
+}

@@ -1,0 +1,49 @@
+<div class="contact-us-form">
+	<div class="two-col">
+		<div class="input-wrap">
+			<label for="first_name">First Name<em>*</em></label>
+			[text* first_name id:first_name]
+		</div>
+		<div class="input-wrap">
+			<label for="last_name">Last Name<em>*</em></label>
+			[text* last_name id:last_name]
+		</div>
+	</div>
+
+	<div class="input-wrap">
+		<label for="phone_number">Phone<em>*</em></label>
+		[tel* phone_number id:phone_number class:tel-mask-no-ext]
+	</div>
+
+	<div class="input-wrap">
+		<label for="your-email">Email<em>*</em></label>
+		[email* your-email id:your-email]
+	</div>
+
+	<div class="input-wrap">
+		A selection of checkboxes
+		[checkbox checkbox-277 id:checkbox-277 label_first use_label_element "Option 1" "Option 2" "Option 3"]
+	</div>
+	
+	<div class="input-wrap">
+		A selection of radio buttons
+		[radio radio-924 id:radio-924 label_first use_label_element default:1 "Option 1" "Option 2" "Option 3"]
+	</div>
+
+	<div class="input-wrap">
+		<label for="select-85">Select Box</label>
+		[select select-85 id:select-85 class:form-select-box "Select One" "Option 1" "Option 2" "Option 3" "Option 4" "Option 5" "Option 6" "Option 7" "Option 8"]
+	</div>
+
+	<div class="input-wrap height-fix">
+		<label for="your-message">Questions/Comments<em>*</em></label>
+		[textarea* your-message id:your-message 0x0]
+	</div>
+
+	<div class="input-wrap center">
+		<!--  website-url  should be something that doesn't get filled in by a person -->
+		[honeypot website-url move-inline-css:true]
+		[submit "Send"]
+	</div>
+
+</div>

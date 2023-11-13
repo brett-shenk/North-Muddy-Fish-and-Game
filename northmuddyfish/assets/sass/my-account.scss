@@ -1,0 +1,532 @@
+@charset "utf-8";
+/**
+ * @author		Brett Shenk  https://www.linkedin.com/in/brett-shenk-59480794/
+ * @copyright	North Muddy Fish and Game Association  2023
+ * 
+ * @package  	My Account CSS
+ * @version		1.0
+**/
+
+// Variables, Tools, Mixins
+@import "setup/variables";
+@import "setup/tools";
+@import "setup/animations";
+
+// Vendors
+@import "vendor/dropzone";
+
+.account-form-wrapper{
+    &.background{
+        max-width: 600px;
+        background-color: $color_white;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2.5em;
+    }
+
+    .txt-red {
+        color: $color_error;
+    }
+    .lost-password{
+        text-decoration: underline;
+        margin-top: 1em;
+        display: inline-block;
+    }
+    .description-html-allowed {
+        font-size: convert(14px, 'em');
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        @media (max-width: 767px) {
+            text-align: center;
+        }
+        .column{
+            &:nth-of-type(1){
+                flex-basis: 100%;
+                text-align: center;
+                margin-top: .25em;
+            }
+            &:nth-of-type(2), &:nth-of-type(3){
+                flex-basis: 49%;
+                flex-shrink: 0;
+                line-height: 2;
+            }
+        }
+    }
+
+    // Honeypot for bots
+    input[type="text"]#mywebsite,
+    input[type="text"]#myfacebook,
+    input[type="text"]#myoutube,
+    input[type="text"]#mytwitter{
+        width: 0;
+        height: 0;
+        padding: 0;
+        border: 0;
+        margin: 0;
+        display: block;
+    }
+}
+#toast-container{
+    max-width: 530px;
+    margin: 0 auto 2em auto;
+    padding: .4em 1em .6em 3.1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0.5em;
+    box-shadow: 0 0 5px 1px $color_black;
+    animation: 700ms shake 1 ease-in-out;
+    position: relative;
+    cursor: pointer;
+    
+    &[data-type="error"]{
+        background-color: $color_error;
+
+        p, ul, [class*='icon-'] {
+            color: $color_white;
+        }
+    }
+    &[data-type="info"]{
+        background-color: #72aee6;
+
+        p, ul, [class*='icon-'] {
+            color: $color_black;
+        }
+    }
+    &[data-type="confirm"]{
+        background-color: $color_success;
+
+        p, ul, [class*='icon-'] {
+            color: $color_black;
+        }
+    }
+    p, ul {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    [class*='icon-']{
+        position: absolute;
+        left: 0.5em;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5em;
+    }
+    a:not([class]){
+        text-decoration: underline;
+        color: $color_black;
+    }
+}
+input[name="password"]{
+    padding-right: 2.1em;
+}
+.input-wrap{
+    .password-eye{
+        background-color: transparent;
+        border: none;
+        padding: 0.6em;
+        line-height: 1;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        z-index: 5;
+        transform: translate(0, -50%);
+        transition: none;
+    }
+    &.has-validation-error{
+        .password-eye{
+            top: 36%;
+        }
+    }
+    &.password{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    &.infobox{
+        display: flex;
+
+        input{
+            order: 1;
+            flex-basis: 95%;
+        }
+        .validation-error{
+            order: 4;
+        }
+        .tooltip {
+            order: 2;
+            flex-basis: 5%;
+            align-self: center;
+            text-align: center;
+        }
+    }
+    &.forgetmenot {
+        margin: 1.3em 0 0 0;
+    }
+}
+form#dlp-submit-form {
+    .fieldset-document_file.fieldset-type-file{
+        margin-top: -1rem;
+        margin-bottom: .5em;
+    }
+    fieldset{
+        margin: 0;
+    }
+    .field{
+        &.has-validation-error {
+            input{
+                border: 2px solid $color_error;
+            }
+            .validation-error{
+                color: $color_error;
+                font-size: .9em;
+                margin-top: 0.2em;
+            }
+        }
+    }
+    button[type=submit].loading{
+        padding-left: 0;
+    }
+}
+
+
+/**
+ * The Tooltip
+**/
+.tooltip {
+    display: inline-block;
+    position: relative;
+    cursor: help;
+
+    &:hover{
+        .top {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+    ul {
+        padding: .5em 0em .2em 1.5em;
+        margin: 0;
+
+        li {
+            line-height: 1.5em;
+        }
+    }
+    [class*='icon-']{
+        color: #0c5cf3;
+    }
+    .top {
+        min-width: 230px; 
+        max-width: 400px;
+        top: -15px;
+        left: 50%;
+        transform: translate(-50%, -100%);
+        padding: 10px 20px;
+        text-align: left;
+        color: #ffffff;
+        background-color: #252525;
+        font-weight: normal;
+        font-size: 13px;
+        border-radius: 8px;
+        position: absolute;
+        z-index: 99999999;
+        box-sizing: border-box;
+        box-shadow: 0 1px 8px rgba(0,0,0,0.5);
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.8s;
+
+        i {
+            position: absolute;
+            top: 99%;
+            left: 50%;
+            margin-left: -12px;
+            width: 24px;
+            height: 12px;
+            overflow: hidden;
+
+            &:after {
+                content: '';
+                position: absolute;
+                width: 12px;
+                height: 12px;
+                left: 50%;
+                transform: translate(-50%,-50%) rotate(45deg);
+                background-color: #252525;
+                box-shadow: 0 1px 8px rgba(0,0,0,0.5);
+            }
+        }
+    }
+}
+.account-form-wrapper{
+    .tooltip .top{
+        transform: translate(-90%, -100%);
+
+        i {
+            left: 89%;
+        }
+    }
+}
+
+
+/**
+ * My Account Page
+**/
+.my-account-page #main .my-account-page-wrapper{
+    display: flex;
+    gap: 3.2em;
+    padding-left: 0;
+    padding-right: 0;
+
+    @media (max-width: 1200px) {
+        gap: 1.4em;
+    }
+    .my-account-sidebar-container{
+        flex-basis: 20%;
+        flex-shrink: 0;
+        max-width: 270px;
+        min-width: 250px;
+
+        @media (max-width: 1200px) {
+            min-width: 233px;
+        }
+    }
+    .my-account-container{
+        flex-grow: 1;
+    }
+}
+.my-account-sidebar-container{
+    @media (max-width: 999px) {
+        display: none;
+    }
+    ul, ol{
+        margin: 0;
+        padding: 0 1.1em;
+        background-color: $color_white;
+
+        @media (max-width: 1200px) {
+            padding: 0 1em;
+        }
+        li {
+            list-style-type: none;
+            position: relative;
+            z-index: 0;
+            
+            &:after{
+                @include pseudo-element();
+                height: 2px;
+                top: unset;
+                bottom: 0;
+                background-color: $color_primary;
+
+            }
+            &:last-of-type::after{
+                content: '';
+                display: none;
+            }
+        }
+    }
+    button{
+        background-color: transparent;
+        border: none;
+        padding: 0;
+    }
+    a {
+        display: block;
+    }
+    a, button{
+        color: $color_black;
+        width: 100%;
+        text-align: left;
+        padding: 0.7em 0.5em;
+        margin-bottom: 2px;
+        opacity: .5;
+
+        [class*='icon-']{
+            float: right;
+            font-size: 20px;
+        }
+        .icon-file-lines{
+            margin-right: .1em;
+        }
+        .icon-logout{
+            margin-right: -.1em;
+        }
+        &:hover{
+            opacity: 1;
+        }
+        &.active{
+            opacity: 1;
+        }
+    }
+    a span, button span{
+        font-size: 20px;
+        font-family: $sans;
+        font-weight: bold;
+
+        @media (max-width: 1200px) {
+            font-size: 18px;
+        }
+    }
+}
+.em{
+    font-style: italic;
+    margin: -2.1em 0 2.1em 0;
+}
+.my-account-container {
+    position: relative;
+    padding-right: 1em;
+    
+    @media (max-width: 999px) {
+        padding-left: 1em;
+    }
+    .tab{
+        display: none;
+
+        &.active{
+            display: block;
+        }
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="search"],
+    input[type="email"],
+    input[type="url"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="date"],
+    input[type="month"],
+    input[type="week"],
+    input[type="time"],
+    textarea, select {
+        background-color: $color_white;
+    }
+    legend{
+        padding-top: 1.4em;
+        margin-bottom: 2.5em;
+        font-weight: bold;
+        font-size: 1.125em;
+    }
+}
+
+/**
+ * My Custom Drag-n-Drop Zone
+ * Dropzone
+**/
+.tab.profile-image{
+    #form-profile-image {
+        div.wp-block-button {
+            text-align: center;
+        }
+    }
+    .block-columns{
+        gap: 1.9em;
+    
+        @media (max-width: 710px) {
+            flex-direction: column;
+        }
+        img{
+            max-height: none;
+
+            @media (min-width: 901px) {
+                max-width: none;
+            }
+            @media (max-width: 900px) {
+                height: 100%;
+            }
+        }
+        .column:first-of-type {
+            flex-basis: 37.1%;
+            flex-grow: 0;
+            flex-shrink: 0;
+
+            @media (max-width: 900px) {
+                flex-basis: 50%;
+            }
+            @media (max-width: 710px) {
+                text-align: center;
+            }
+        }
+        .column:last-of-type {
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+    }
+    .profile-image-restrictions{
+        margin-top: -1.8em;
+        margin-bottom: 0.5em;
+        font-size: convert(14px, 'em');
+        line-height: 1.6;
+    }
+}
+
+/**
+ * Officer Details
+**/
+.tab.officer-details{
+    form[name="officer-details"]{
+        div.wp-block-button {
+            text-align: center;
+        }
+        textarea {
+            min-height: 12em;
+        }
+        .acf-field[data-name="user_description"]{
+            padding: 0;
+            margin-top: -0.5em;
+
+            label {
+                margin-left: -0.8em;
+            }
+            .description{
+                display: none;
+            }
+        }
+    }
+    .block-columns{
+        gap: 1.9em;
+    
+        @media (max-width: 767px) {
+            flex-direction: column-reverse;
+        }
+        .user-block{
+            @media (max-width: 1300px) and (min-width: 1000px) {
+                display: block;
+
+                .column+.column {
+                    margin-top: 1em;
+                }
+            }
+            @media (max-width: 900px) {
+                display: block;
+
+                .column+.column {
+                    margin-top: 1em;
+                }
+            }
+        }
+        & > .column:first-of-type {
+            flex-basis: 65%;
+            flex-grow: 0;
+            flex-shrink: 0;
+        }
+        & > .column:last-of-type {
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+    }
+}
+
+/**
+ * Submit a Document
+**/
+.tab.submit-document{
+    .fieldset-type-taxonomy .dlp-taxonomy-select{
+        border: 2px solid $color_primary;
+    }
+    .fieldset-document_link .icon-chevron-left {
+        top: 32%;
+    }
+}

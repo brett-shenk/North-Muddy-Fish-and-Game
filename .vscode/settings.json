@@ -1,0 +1,18 @@
+{
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#442046",
+        "titleBar.activeBackground": "#5F2C63",
+        "titleBar.activeForeground": "#FCF9FC"
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/node_modules": true
+    },
+    "cSpell.words": [
+        "myfacebook",
+        "myoutube",
+        "mytwitter"
+    ],
+}

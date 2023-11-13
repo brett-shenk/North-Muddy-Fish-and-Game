@@ -1,0 +1,29 @@
+@charset "utf-8";
+/**
+ * @author		Brett Shenk  https://www.linkedin.com/in/brett-shenk-59480794/
+ * @copyright	North Muddy Fish and Game Association  2023
+ * 
+ * @package  	WordPress Admin CSS
+ * @version		1.0
+**/
+
+// Variables, Tools, Mixins
+@import "setup/variables";
+@import "setup/tools";
+@import "global/icons";
+
+// Add FE fonts to the admin
+@import "fonts";
+
+// Hide pingback and trackbacks from admin
+body.options-discussion-php label[for="default_ping_status"],
+body.options-discussion-php label[for="default_ping_status"]~br{
+    display: none;
+}
+
+/**
+ * Custom
+**/
+form#createuser label[for="url"], form#createuser input[name="url"]{
+    display: none!important;
+}

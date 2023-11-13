@@ -1,0 +1,127 @@
+/**
+ * Footer of the site
+**/
+#footer{
+	#footer-inner-container{
+		background-color: $color_white;
+		padding-top: convert(80px, "em");
+		padding-bottom: convert(80px, "em");
+	}
+	.wrapper {
+		@include wrap;
+		display: flex;
+		justify-content: space-between;
+
+		@media (max-width: 850px){
+			display: block;
+		}
+	}
+}
+@media (max-width: 850px){
+	#footer_column_one{
+		margin-bottom: 2.5em!important;
+	}
+	#footer_column_three{
+		display: none;
+	}
+}
+#footer_column_one, #footer_column_two, #footer_column_three{
+	width: 30%;
+
+	@media (max-width: 850px){
+		width: 100%;
+		text-align: center;
+		margin: 0 auto;
+	}
+	.widget{
+		ul:not([class]), ol:not([class]) {
+			li{
+				font-size: convert(17px, "em");
+				line-height: 1.5;
+				margin-bottom: .8em;
+				
+				&:last-of-type{
+					margin-bottom: 0;
+				}
+				a{
+					color: $color_black;
+					font-size: inherit;
+					@include animate_draw_line($color_third);
+				}
+			}
+
+		}
+	}
+	.contact-info-container.block-type{
+		&.type-phone, &.type-email, &.type-address a{
+			font-size: convert(17px, "em");
+		}
+	}
+	@media (max-width: 850px){
+		.wp-block-spacer {
+			height: 7px!important;
+		}
+		.wp-block-social-links{
+			justify-content: center;
+		}
+	}
+}
+#copyright-container {
+	background-color: $color_primary;
+	color: $color_white;
+	font-size: convert(14px, "em");
+	padding: .6em 0;
+
+	.block-columns{
+		width: 100%;
+		align-items: center;
+
+		@media (max-width: 767px){
+			display: block;
+		}
+		& > .block-column {
+			flex-basis: 25%;
+
+			&:first-child{
+				flex-grow: 3;
+
+				@media (max-width: 767px){
+					text-align: center;
+				}
+			}
+			&:last-child{
+				flex-grow: 1;
+			}
+		}
+	}
+	ul, ol{
+		display: flex;
+		justify-content: flex-end;
+
+		@media (max-width: 767px){
+			justify-content: center;
+			margin-top: 0.3em;
+		}
+		li:last-of-type a:after{
+			content: '';
+			padding: 0;
+		}
+	}
+	a{
+		color: $color_white;
+		font-size: inherit;
+
+		@media (max-width: 767px){
+			line-height: 1.8;
+		}
+		&:hover, &:active {
+			text-decoration: underline;
+		}
+		&:after{
+			content: '|';
+			display: inline-block;
+			line-height: inherit;
+			padding: 0 0.64em;
+		}
+	}
+}

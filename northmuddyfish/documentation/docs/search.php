@@ -1,0 +1,6 @@
+<?php
+/**
+ * Search Results
+ */
+
+synpulse();

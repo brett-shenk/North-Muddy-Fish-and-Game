@@ -1,0 +1,93 @@
+@charset "utf-8";
+/**
+ * @author		Brett Shenk  https://www.linkedin.com/in/brett-shenk-59480794/
+ * @copyright	North Muddy Fish and Game Association  2023
+ * 
+ * @package  	Fonts
+ * @version		1.0
+**/
+
+// Variables, Tools, Mixins
+@import "./setup/variables";
+
+/**
+ * TYPOGRAPHY
+ * 
+ * .EOT is meant for IE browsers, like 8 and below
+ * .TTF goes back to the 1980's
+ * .WOFF2 & .WOFF are the recommended formats, in order
+**/
+
+/* Lato */
+@font-face {
+    font-family: 'Lato';
+    font-display: swap;
+    font-weight: 300;
+    font-style: normal;
+    src: url(#{$font_path}Lato-Light.woff2) format('woff2'),
+        url(#{$font_path}Lato-Light.woff) format('woff'),
+        url(#{$font_path}Lato-Light.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Lato';
+    font-display: swap;
+    font-weight: 300;
+    font-style: italic;
+    src: url(#{$font_path}Lato-LightItalic.woff2) format('woff2'),
+        url(#{$font_path}Lato-LightItalic.woff) format('woff'),
+        url(#{$font_path}Lato-LightItalic.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Lato';
+    font-display: swap;
+    font-weight: 400;
+    font-style: normal;
+    src: url(#{$font_path}Lato-Regular.woff2) format('woff2'),
+        url(#{$font_path}Lato-Regular.woff) format('woff'),
+        url(#{$font_path}Lato-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Lato';
+    font-display: swap;
+    font-weight: 400;
+    font-style: italic;
+    src: url(#{$font_path}Lato-Italic.woff2) format('woff2'),
+        url(#{$font_path}Lato-Italic.woff) format('woff'),
+        url(#{$font_path}Lato-Italic.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Lato';
+    font-display: swap;
+    font-weight: 700;
+    font-style: normal;
+    src: url(#{$font_path}Lato-Bold.woff2) format('woff2'),
+        url(#{$font_path}Lato-Bold.woff) format('woff'),
+        url(#{$font_path}Lato-Bold.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Lato';
+    font-display: swap;
+    font-weight: 700;
+    font-style: italic;
+    src: url(#{$font_path}Lato-BoldItalic.woff2) format('woff2'),
+        url(#{$font_path}Lato-BoldItalic.woff) format('woff'),
+        url(#{$font_path}Lato-BoldItalic.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Lato';
+    font-display: swap;
+    font-weight: 900;
+    font-style: normal;
+    src: url(#{$font_path}Lato-Black.woff2) format('woff2'),
+        url(#{$font_path}Lato-Black.woff) format('woff'),
+        url(#{$font_path}Lato-Black.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Lato';
+    font-display: swap;
+    font-weight: 900;
+    font-style: italic;
+    src: url(#{$font_path}Lato-BlackItalic.woff2) format('woff2'),
+        url(#{$font_path}Lato-BlackItalic.woff) format('woff'),
+        url(#{$font_path}Lato-BlackItalic.ttf) format('truetype');
+}

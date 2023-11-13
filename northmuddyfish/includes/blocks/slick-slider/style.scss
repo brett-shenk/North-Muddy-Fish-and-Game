@@ -1,0 +1,133 @@
+@charset "utf-8";
+
+// Variables, Tools, Mixins
+@import "../../../assets/sass/setup/variables";
+// @import "../../../assets/sass/setup/tools";
+// @import "../../../assets/sass/setup/animations";
+
+.slick-slider-inner-container {
+    display: block;
+    position: relative;
+}
+.slick-slider-container{
+    padding: 0;
+
+    .slick-slide.slick-active{
+        opacity: 1!important;
+        display: block;
+    }
+    .slick-slider .slick-track, .slick-slider .slick-list {
+        display: flex;
+        align-items: stretch;
+        justify-content: flex-start;
+    }
+    .arrow-style-block .slick-arrow{
+        width: 40px;
+        height: 40px;
+        background-color: #1F2943;
+
+        @media (hover: hover) {     // desktop only
+            &:hover {
+                background-color: white;
+    
+                &:before{
+                    color: #1F2943;
+                }
+            }
+        }
+    }
+    .arrow-style-outline-lite .slick-arrow, .arrow-style-outline-dark .slick-arrow{
+        width: 70px;
+        height: 70px;
+
+        &:before {
+            font-size: 70px;
+            font-weight: 100;
+        }
+    }
+    .arrow-style-outline-lite .slick-arrow{
+        @media (hover: hover) {     // desktop only
+            &:hover {
+                &:before{
+                    text-shadow: 0px 0px 6px #ffffff;
+                }
+            }
+        }
+    }
+    .arrow-style-outline-dark .slick-arrow{
+        &:before{
+            color: #000000;
+            text-shadow: 0px 0px 2px #ffffff;
+        }
+        @media (hover: hover) {     // desktop only
+            &:hover {
+                &:before{
+                    text-shadow: 0px 0px 6px #000000;
+                }
+            }
+        }
+    }
+    .slick-arrow{
+        opacity: 1;
+
+        &.slick-disabled{
+            opacity: 0;
+            pointer-events: none;
+        }
+        i{
+            font-weight: 300;
+            opacity: .8;
+            line-height: 1.4em!important;
+        }
+    }
+    ul.slick-dots {
+        position: relative;
+        padding-bottom: 2em;
+        bottom: -1.8em;
+
+        li {
+            margin: 0px 0.5em;
+        }
+    }
+    .previous-slideshow{
+        left: -2.2em!important;
+    }
+    .next-slideshow{
+        right: -2.2em;
+    }
+    @media (max-width: 79.375em){       // 1270
+        .previous-slideshow{
+            left: -1.05em!important;
+        }
+        .next-slideshow{
+            right: -1.05em;
+        }
+    }
+}
+.wp-block-cover.is-style-background{
+    .wp-block-cover__inner-container{
+        @media (max-width: 800px) {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}
+.single-slide-container .acf-innerblocks-container {
+    .wp-block-columns{
+        margin-bottom: 0;
+    }
+    .wp-block-cover .wp-block-cover__image-background,
+    .wp-block-cover video.wp-block-cover__video-background,
+    .wp-block-cover-image .wp-block-cover__image-background,
+    .wp-block-cover-image video.wp-block-cover__video-background {
+        height: auto;
+    }
+    .wp-block-cover, .wp-block-cover-image{
+        max-height: 500px;
+    
+        img {
+            height: auto!important;
+            min-height: 500px;
+        }
+    }
+}

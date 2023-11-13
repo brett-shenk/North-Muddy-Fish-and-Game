@@ -1,0 +1,56 @@
+/**
+ * Animation Ideas
+ * 
+ * @link    Text   https://www.sliderrevolution.com/resources/css-text-animation/
+ * @link    Hover  http://ianlunn.github.io/Hover/
+**/
+
+// Draw Line Animation
+@mixin animate_draw_line( $color: $color_primary ){
+    position: relative;
+    display: inline-block;
+
+    &:before {
+        content: '';
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        width: 0;
+        transition: width .5s ease;
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+    }
+    &:hover {
+        color: $color;
+
+        &:before {
+            border-bottom-color: $color;
+            width: 100%;
+        }
+    }
+}
+
+// animation: 700ms shake 1 ease-in-out;
+@keyframes shake {
+    0% {
+        transform: translateX(10px);
+    }
+    15% {
+        transform: translateX(-10px);
+    }
+    30% {
+        transform: translateX(20px);
+    }
+    45% {
+        transform: translateX(-20px);
+    }
+    60% {
+        transform: translateX(10px);
+    }
+    75%{
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

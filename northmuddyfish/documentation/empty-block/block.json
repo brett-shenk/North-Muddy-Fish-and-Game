@@ -1,0 +1,33 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "version": "1.0.0",
+    "name": "shenk/empty-block",
+    "title": "",
+    "description": "",
+    "keywords": [
+
+    ],
+    "icon": "",
+    "category": "",
+    "supports": {
+        "jsx": true,
+        "html": false,
+        "align": false,
+        "className": false,
+        "customClassName": false,
+        "spacing": {
+            "margin": true,
+            "padding": true,
+            "blockGap": [ "horizontal", "vertical" ]
+        }
+    },
+    "style": [ "block-empty-block" ],
+    "acf": {
+        "mode": "preview",
+	    "renderTemplate": "includes/blocks/empty-block/block.php"
+    },
+    "example": {
+        "attributes": {}
+    }
+}

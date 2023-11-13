@@ -1,0 +1,87 @@
+/**
+ * This is inlined in the <head>
+ * 
+ * Animation Ideas
+ * @link    loader http://cfoucht.com/loadlab/
+ * @link    loader https://www.cssscript.com/demo/beautiful-creative-loaders/
+**/
+
+// Variables, Tools, Mixins
+@import "../setup/variables";
+@import "../setup/tools";
+
+.preloader{
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+
+	.loader {
+		display: inline-block;
+		position: relative;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	
+		&:after, &:before{
+			content: '';  
+			box-sizing: border-box;
+			border-radius: 50%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			animation: animloader 2s linear infinite;
+		}
+		&:after{
+			animation-delay: 1s;
+			opacity: 0;
+		}
+	}
+
+	// Page Preloader
+	&[data-type="page"]{
+		position: fixed;
+		background-color: $color_primary;
+		z-index: 9999999;
+
+		.loader {
+			width: 350px;
+			height: 350px;
+
+			&:after, &:before{
+				width: 350px;
+				height: 350px;
+				border: 2px solid #FFF;
+			}
+		}
+	}
+
+	// Element Preloader
+	&[data-type="section"]{
+		position: absolute;
+		background-color: $color_secondary;
+		z-index: map-get($z-layers, "z-index-site-header") + 49;
+
+		.loader {
+			width: 250px;
+			height: 250px;
+
+			&:after, &:before{
+				width: 250px;
+				height: 250px;
+				border: 2px solid $color_primary;
+			}
+		}
+	}
+}
+
+@keyframes animloader {
+	0% {
+		transform: scale(0);
+		opacity: 1;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 0;
+	}
+}

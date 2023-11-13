@@ -1,0 +1,219 @@
+/**
+ * Main Document Center
+**/
+.facetwp-template[data-name="dlp_documents"]{
+    .posts-table-wrapper {
+        margin-top: 0;
+    }
+    th{
+        background-color: $color_primary;
+        color: $color_white;
+    }
+    .dlp-table-document-link-wrap {
+        input[type="checkbox"]{
+            display: block;
+        }
+        .dlp-preview-button {
+            transition: .2s color ease-in-out;
+            color: $color_primary;
+
+            &:hover{
+                color: $color_third;
+            }
+        }
+        .dlp-download-link.dlp-download-button{
+            background-color: $color_third;
+            border: 2px solid $color_third;
+            color: $color_white;
+            font-weight: bold;
+
+            &:hover{
+                background-color: transparent;
+                color: $color_third;
+            }
+        }
+    }
+}
+.dlp-multiple-download-btn{
+    background-color: $color_third;
+    border: 2px solid $color_third;
+    color: $color_white;
+    padding: 0.5em;
+    font-weight: bold;
+
+    &:not(:disabled):hover{
+        background-color: transparent;
+        color: $color_third;
+    }
+    &:disabled{
+        opacity: .4;
+    }
+}
+.facetwp-facet-document_search{
+    margin-top: 0.4em!important;
+
+    .facetwp-input-wrap {
+        width: 100%;
+    }
+}
+.facetwp-type-checkboxes {
+    .facetwp-checkbox{
+        background: transparent;
+        position: relative;
+        padding-left: 1.6em;
+
+        &.checked{
+            background: transparent;
+        }
+        &:before {
+            content: "";
+            width: 18px;
+            height: 18px;
+            background-color: transparent;
+            border: 2px solid white;
+            display: inline-block;
+            position: absolute;
+            left: 0em;
+            top: .13em;
+            line-height: 0.9em!important;
+        }
+    }
+}
+.posts-table-below{
+    .dataTables_info {
+        margin-right: auto;
+    }
+    .paginate_button{
+        border: none;
+
+        &.previous, &.next{
+            font-size: 0;
+            line-height: 0;
+
+            &:after {
+                width: 30px;
+                height: 26px;
+                display: inline-block;
+                font-size: 20px;
+                line-height: 1.2em;
+                font-weight: bold;
+            }
+        }
+        &.previous:after {
+            content: '<';
+        }
+        &.next:after {
+            content: '>';
+        }
+    }
+}
+#main .dataTables_wrapper .dataTables_paginate .paginate_button{
+    border: none;
+    box-shadow: unset;
+
+    &.current, &:not(.disabled):hover{
+        background: $color_primary;
+        color: $color_white!important;
+        font-weight: bold;
+        border: none;
+    }
+}
+
+
+/**
+ * Single Document
+**/
+body.single-dlp_document {
+    article.entry > .wrapper {
+        display: flex;
+
+        @media (max-width: 800px){
+            flex-direction: column;
+        }
+    }
+
+    // Main Content
+    .dlp-document-main{
+        flex-grow: 1;
+    }
+
+    // Sidebar
+    .dlp-document-info{
+        margin-left: 1.5em;
+        flex-basis: 17em;
+        flex-shrink: 0;
+
+        @media (max-width: 800px){
+            margin-left: 0;
+            margin-top: 1.5em;
+            flex-basis: unset;
+        }
+        .document-sidebar-container {
+            color: $color_white;
+            background-color: $color_primary;
+            padding: 1.5em;
+            width: 100%;
+
+            a {
+                color: $color_white;
+            }
+            #dlp-document-info-list {
+                margin-top: 0;
+                margin-bottom: 0;
+                line-height: 1.5em;
+    
+                .dlp-document-info-title {
+                    width: 90px;
+                    display: inline-flex;
+                }
+            }
+            .dlp-document-info-buttons{
+                .dlp-download-link.dlp-download-button {
+                    border-radius: 10px;
+                    width: 100%;
+                    position: relative;
+                    overflow: hidden;
+                    z-index: map-get($z-layers, "z-index-button");
+                    box-shadow: 0px 0px 0px 0px white;
+                    transition: .25s all cubic-bezier(0.45, 0.05, 0.55, 0.95);
+                    
+                    &:before{
+                        @include pseudo-element($width: 400px);
+                        background: $color_third;
+                        background: linear-gradient(90deg, $color_third 10%, rgba(0,1,2,1) 70%);
+                        transition: .25s all cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    
+                        @media (max-width: 800px){
+                            width: 1300px;
+                        }
+                    }
+                    &:not(:disabled):hover{
+                        box-shadow: 0px 0px 6px 0px white;
+    
+                        &:before{
+                            left: -100%;
+    
+                            @media (max-width: 800px){
+                                left: -80%;
+                            }
+                        }
+                    }
+                    &:disabled{
+                        cursor: wait;
+                        filter: grayscale(1);
+                        color: #9f9f9f;
+                    }
+                }
+                .dlp-preview-button {
+                    .dlp-icon.dlp-button-icon{
+                        transition: .2s color ease-in-out;
+    
+                        &:hover{
+                            color: $color_third;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,98 @@
+/**
+ * TYPOGRAPHY
+**/
+body {
+	font-weight: 400;
+	font-family: $font_body;
+	line-height: 1.2;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: $font_heading;
+	font-weight: 700;
+	line-height: normal;
+	margin: 0;
+	padding: 0;
+
+	span, strong, em, small {
+		color: inherit;
+	}
+}
+h1 {
+	font-size: 3.125em;
+
+	@media (max-width: 31.25em) {        // 500px
+		font-size: 2.37em;
+	}
+}
+h2 {
+	font-size: 2.143em;
+
+	@media (max-width: 31.25em) {        // 500px
+		font-size: 1.6em;
+	}
+}
+h3{
+	font-size: 1.6em;
+}
+h4{
+	font-size: 1.313em;
+}
+h5{
+	font-size: convert(18px, 'em');
+}
+h6{
+	font-size: convert(14px, 'em');
+}
+
+a,
+button,
+input:focus,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+.button {
+	transition: all 0.25s ease-out;
+}
+a, button {
+	[class*='icon-']:before{
+		transition: none;
+	}
+}
+strong, b {
+	font-weight: 700;
+	font-family: inherit;
+}
+sub, sup {
+	position: relative;
+	font-size: .8em;
+    line-height: 0;
+}
+sub {
+  	bottom: -0.25em;
+}
+sup {
+  	top: -0.5em;
+}
+span {
+	line-height: normal;
+}
+p {
+	font-family: $font_body;
+	margin-bottom: 1.3em;
+	line-height: 1.857;
+
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+	@media (max-width: 31.25em) {		// 500px
+		overflow-wrap: break-word;
+	}
+}
+small {
+	font-size: .8em;
+}
+a, sup, sub, del, li, td, th, summary {
+	font-family: $font_body;
+}

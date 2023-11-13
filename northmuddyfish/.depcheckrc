@@ -1,0 +1,10 @@
+ignores: [
+    "browserslist",
+    "gulp-cli",
+    "@babel/preset-env"
+]
+skip-missing: false,
+specials: [
+    special.babel,
+    special.gulp-load-plugins
+]

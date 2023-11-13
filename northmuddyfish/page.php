@@ -1,0 +1,3 @@
+<?php
+
+shenk_init();

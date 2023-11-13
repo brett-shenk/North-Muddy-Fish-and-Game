@@ -1,0 +1,37 @@
+/**
+ * @package 	My Custom Drag-n-Drop Zone
+ * @description Dropzone
+ * 
+ * @author		Brett Shenk
+ * @version		1.0
+ * @license		GNU AGPLv3  https://choosealicense.com/licenses/agpl-3.0/
+ * @copyright	2023
+**/
+.dropzone{
+    background-color: #efefef;
+    border: 2px dashed #000000;
+    padding: 4em 1em;
+    border-radius: 15px;
+    text-align: center;
+    transition: .25s all ease-in-out;
+    cursor: pointer;
+
+    p{
+        user-select: none;
+    }
+    input[type="file"]{
+        display: none;
+    }
+    &:hover{
+        background-color: #ffffff;
+    }
+    &.highlight {
+        background-color: #ffffff;
+        border: 2px dashed #26CD20;
+    }
+    &.disabled {
+        background-color: transparent;
+        border: 2px dashed #efefef;
+        cursor: default;
+    }
+}

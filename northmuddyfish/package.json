@@ -1,0 +1,54 @@
+{
+	"name": "northmuddy.com",
+	"version": "2.3.0",
+	"description": "Primary Theme Task Runner",
+	"license": "AGPL-3.0-only",
+	"author": "Brett Shenk",
+	"engines": {
+		"node": ">=16.13.1",
+		"npm": ">=8.1.2",
+		"gulp": "4.0"
+	},
+	"devDependencies": {
+		"@hayes0724/web-font-converter": "^1.0.5",
+		"del": "^5.1.0",
+		"gulp-iconfont": "^11.0.0",
+		"gulp-iconfont-css": "^3.0.0",
+		"gulp-imagemin": "^7.1.0",
+		"gulp-notify": "^3.2.0",
+		"gulp-postcss": "^9.0.0",
+		"postcss": "^8.3.6"
+	},
+	"dependencies": {
+		"@babel/core": "^7.15.0",
+		"@babel/preset-env": "^7.15.0",
+		"autoprefixer": "^10.3.2",
+		"browserslist": "^4.16.8",
+		"gulp": "^4.0.2",
+		"gulp-babel": "^8.0.0",
+		"gulp-concat": "^2.6.1",
+		"gulp-rename": "^2.0.0",
+		"gulp-sass": "^4.1.1",
+		"gulp-sourcemaps": "^2.6.5",
+		"gulp-uglify": "^3.0.2",
+		"node-sass": "^6.0.1"
+	},
+	"browserslist": [
+		"last 3 versions",
+		"not dead",
+		"not ie 11"
+	],
+	"scripts": {
+		"watch": "gulp",
+		"buildDev": "gulp dev",
+		"buildProd": "gulp prod",
+		"icons": "gulp icons",
+		"generateFont": "gulp fonts",
+		"desktopSpeedReport": "lighthouse http://192.168.0.241:8080/ --preset=desktop --view",
+		"mobileSpeedReport": "lighthouse http://192.168.0.241:8080/ --view",
+		"supportedBrowsers": "npx browserslist",
+		"updateBrowsers": "npx browserslist@latest --update-db",
+		"update": "npm update",
+		"deleteDist": "gulp CleanHouse"
+	}
+}

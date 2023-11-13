@@ -1,0 +1,26 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "version": "1.0.0",
+    "name": "shenk/slick-slider-content",
+    "title": "Slider Content",
+    "supports": {
+        "jsx": true,
+        "html": false,
+        "align": false,
+        "className": false,
+        "customClassName": false,
+        "spacing": {
+            "margin": true,
+            "padding": true
+        }
+    },
+    "acf": {
+        "mode": "preview",
+	    "renderTemplate": "includes/blocks/slick-slider-content/block.php"
+    },
+    "example": {
+        "attributes": {}
+    },
+    "parent": ["shenk/slick-slider"]
+}

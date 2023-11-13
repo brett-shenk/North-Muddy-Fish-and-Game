@@ -1,0 +1,10 @@
+.is-root-container {
+    .slick-slider-container {
+        .previous-slideshow, .next-slideshow, ul.slick-dots {
+            display: none;
+        }
+        .single-slide-container {
+            overflow: hidden;
+        }
+    }
+}

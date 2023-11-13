@@ -1,0 +1,315 @@
+@charset "utf-8";
+/**
+ * @author		Brett Shenk  https://www.linkedin.com/in/brett-shenk-59480794/
+ * @copyright	North Muddy Fish and Game Association  2023
+ * 
+ * @package  	The Event Calendar CSS
+ * @version		1.0
+**/
+
+// Variables, Tools, Mixins
+@import "../setup/variables";
+@import "../setup/tools";
+// @import "../setup/animations";
+
+
+/**
+ * Widget(s)
+**/
+.widget_block .tribe-events-widget-events-list{
+    margin-top: -16px;
+}
+.widget_block .tribe-events-widget{
+    .tribe-events-widget-events-list__event-datetime-wrapper{
+        margin-bottom: 0;
+        font-size: 14px;
+        line-height: 1.8;
+        order: 2;
+    }
+    .tribe-events-widget-events-list__event-title{
+        font-size: 16px;
+        line-height: 1;
+        order: 1;
+    }
+    .tribe-events-widget-events-list__event-header{
+        display: flex;
+        flex-direction: column;
+    }
+}
+.tribe-events-single ul.tribe-related-events li {
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-size: 1em;
+
+    .tribe-related-events-title {
+        font-size: 18px;
+        line-height: 1.2;
+    }
+    .tribe-related-event-info {
+        justify-content: center;
+    }
+}
+
+
+/**
+ * Calendar Archive
+**/
+.tribe-events .tribe-events-l-container{
+    padding-top: 0;
+    padding-bottom: 0;
+    min-height: unset;
+}
+.tribe-common--breakpoint-medium.tribe-events .tribe-events-l-container{
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+    min-height: unset;
+}
+.tribe-common--breakpoint-medium.tribe-events .tribe-events-header--has-event-search .tribe-events-c-events-bar{
+    background-color: $color_primary!important;
+}
+.tribe-common--breakpoint-medium.tribe-events .tribe-events-c-events-bar--border{
+    border: none!important;
+}
+.tribe-common--breakpoint-medium.tribe-events .tribe-events-c-search__input-control{
+    margin-left: 1em;
+    background-color: #ffffff!important;
+}
+@media (min-width: 800px){
+    .tribe-events .tribe-events-c-view-selector--tabs .tribe-events-c-view-selector__content{
+        background-color: $color_primary!important;
+    }
+    .tribe-events .tribe-events-c-events-bar__search-container{
+        background-color: transparent;
+    }
+}
+.tribe-events .datepicker table{
+    width: 100%;
+}
+.tribe-common--breakpoint-medium.tribe-events .tribe-events-c-search__input-control-icon-svg{
+    pointer-events: none;
+}
+.tribe-common--breakpoint-medium.tribe-events .tribe-events-c-view-selector--tabs .tribe-events-c-view-selector__list-item a{
+    color: #ffffff;
+
+    span {
+        color: inherit;
+        font-family: $font_heading;
+    }
+}
+.tribe-events .tribe-events-c-view-selector__list-item--active .tribe-events-c-view-selector__list-item-text{
+    font-weight: 800!important;
+    letter-spacing: 0.04em;
+}
+.tribe-common--breakpoint-medium.tribe-events .tribe-events-c-view-selector__list-item{
+    transition: .2s all ease;
+}
+.tribe-common--breakpoint-medium.tribe-events .tribe-events-c-view-selector__list-item:focus, 
+.tribe-common--breakpoint-medium.tribe-events .tribe-events-c-view-selector__list-item:focus-within, 
+.tribe-common--breakpoint-medium.tribe-events .tribe-events-c-view-selector__list-item:hover{
+    background-color: $color_third!important;
+}
+.tribe-common--breakpoint-medium.tribe-events .tribe-events-c-view-selector--tabs .tribe-events-c-view-selector__list-item--active .tribe-events-c-view-selector__list-item-link:after{
+    height: 3px;
+    bottom: -2px;
+    background-color: $color_third;
+}
+.tribe-common .tribe-common-c-btn-icon--caret-left .tribe-common-c-btn-icon__icon-svg path, 
+.tribe-common .tribe-common-c-btn-icon--caret-right .tribe-common-c-btn-icon__icon-svg path{
+    fill: #6A3F38;
+}
+.tribe-common .tribe-common-c-btn-icon--caret-left:not(:disabled):active .tribe-common-c-btn-icon__icon-svg path, .tribe-common .tribe-common-c-btn-icon--caret-left:not(:disabled):focus .tribe-common-c-btn-icon__icon-svg path, 
+.tribe-common .tribe-common-c-btn-icon--caret-left:not(:disabled):hover .tribe-common-c-btn-icon__icon-svg path, .tribe-common .tribe-common-c-btn-icon--caret-right:not(:disabled):active .tribe-common-c-btn-icon__icon-svg path, 
+.tribe-common .tribe-common-c-btn-icon--caret-right:not(:disabled):focus .tribe-common-c-btn-icon__icon-svg path, .tribe-common .tribe-common-c-btn-icon--caret-right:not(:disabled):hover .tribe-common-c-btn-icon__icon-svg path{
+    fill: #461007;
+}
+.tribe-common .tribe-common-c-btn-icon--caret-right .tribe-common-c-btn-icon__icon-svg path {
+    transition: .25s all ease;
+}
+.tribe-common--breakpoint-medium.tribe-events .tribe-events-calendar-month__header-column-title{
+    text-align: center;
+    font-size: convert(20px, 'em');
+    color: $color_white;
+}
+.tribe-events-calendar-month__header {
+    background-color: $color_primary;
+    padding: 9px 0!important;
+}
+.tribe-events .tribe-events-calendar-month__header-column{
+    padding-bottom: 0!important;
+}
+.tribe-events-c-nav{
+    .tribe-common-b2 {
+        font-size: 16px!important;
+        font-family: $sans;
+    }
+    .tribe-events-c-nav__prev, .tribe-events-c-nav__next{
+        color: black!important;
+
+        &:disabled {
+            display: none;
+        }
+    }
+}
+.tribe-events .tribe-events-calendar-month__day-cell--selected time.tribe-events-calendar-month__day-date-daynum {
+    color: white;
+}
+
+
+/**
+ * Button(s)
+**/
+.tribe-events .tribe-events-c-search__button, .tribe-events button.tribe-events-c-search__button,
+.tribe-events .tribe-events-c-search__button, .tribe-events button.tribe-events-c-search__button:visited{
+    border-radius: 10px;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    padding-top: 0.75em;
+    padding-right: 1.375em;
+    padding-bottom: 0.75em;
+    padding-left: 1.375em;
+    text-align: center;
+    line-height: 1;
+
+    position: relative;
+    overflow: hidden;
+    z-index: map-get($z-layers, "z-index-button");
+    box-shadow: 0px 0px 0px 0px black;
+    transition: .25s all cubic-bezier(0.45, 0.05, 0.55, 0.95);
+
+    @media (min-width: 800px){
+        margin-left: 1em;
+    }
+}
+.tribe-events .tribe-events-c-search__button, .tribe-events button.tribe-events-c-search__button{
+    &:before{
+        @include pseudo-element($width: calc(100% * 2));
+        background: $color_third;
+        background: linear-gradient(90deg, $color_third 10%, rgba(0,1,2,1) 70%);
+        transition: .25s all cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    }
+    &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus{
+        border-radius: 10px;
+        font-size: 17px;
+        padding-top: 0.75em;
+        padding-right: 1.375em;
+        padding-bottom: 0.75em;
+        padding-left: 1.375em;
+        box-shadow: 0px 0px 6px 0px black;
+
+        &:before{
+            left: -100%;
+        }
+    }
+    &:disabled{
+        cursor: wait;
+        filter: grayscale(1);
+        color: #9f9f9f;
+    }
+}
+.tribe-common .tribe-common-c-btn-border-small, .tribe-common a.tribe-common-c-btn-border-small, .tribe-common .tribe-common-c-btn-border-small:visited{
+    border: 2px solid $color_third;
+    background-color: transparent;
+    color: $color_third;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 0.65em!important;
+    padding-right: 1.375em!important;
+    padding-bottom: 0.65em!important;
+    padding-left: 1.375em!important;
+    text-align: center;
+    line-height: 1;
+    box-shadow: 0px 0px 0px 0px black;
+    transition: .25s all cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+.tribe-common .tribe-common-c-btn-border-small, .tribe-common a.tribe-common-c-btn-border-small{
+    &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus{
+        background-color: $color_third;
+        color: $color_white;
+        border-radius: 10px;
+        font-size: 16px;
+        padding-top: 0.65em;
+        padding-right: 1.375em;
+        padding-bottom: 0.65em;
+        padding-left: 1.375em;
+        box-shadow: 0px 0px 6px 0px black;
+        transition: .25s all cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    }
+    &:disabled{
+        cursor: wait;
+        filter: grayscale(1);
+    }
+}
+.tribe-common .tribe-common-c-btn-border, .tribe-common a.tribe-common-c-btn-border{
+    background-color: transparent;
+}
+.tribe-events-single .tribe-events-sub-nav .tribe-events-nav-next a, .tribe-events-single .tribe-events-sub-nav .tribe-events-nav-previous a{
+    color: #434343;
+}
+.tribe-events-single .tribe-events-sub-nav .tribe-events-nav-next a:after, .tribe-events-single .tribe-events-sub-nav .tribe-events-nav-previous a:before{
+    transition: all 0.25s ease-out;
+    color: #434343;
+}
+
+
+/**
+ * Calendar Single Event
+**/
+.tribe-events-content ol, .tribe-events-content p, .tribe-events-content ul{
+    line-height: 1.857;
+    font-size: 1em;
+}
+.tribe-events-event-meta:before, .tribe-events-event-meta~div:not(.tribe-events-event-meta,.event-tickets), #tribe-events-footer,
+.tribe-events-related-events-title {
+    border-top: 1px solid #4D4D4D;
+}
+.tribe-events-notices {
+    border-bottom: 1px solid #4D4D4D; 
+}  
+#tribe-events-pg-template{
+    padding: 0!important;
+}
+.tribe-events-single {
+    .block-columns{
+        justify-content: space-between;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            margin-bottom: 1em;
+        }
+    }
+    div.tribe-events-back{
+        line-height: 1.2;
+
+        @media (max-width: 768px) {
+            margin-bottom: 1em;
+        }
+        a {
+            margin-left: -0.5em;
+            font-size: 1.4em;
+            line-height: 1;
+
+            i{
+                font-size: 1.5em;
+                line-height: 0.7;
+            }
+        }
+    }
+    div.tribe-events-schedule{
+        margin: 0;
+        line-height: 1.2;
+
+        h2 {
+            margin-right: 0;
+            font-size: 1.4em;
+            line-height: 1.2;
+            font-weight: bold;
+
+            span {
+                line-height: 1.2;
+            }
+        }
+    }
+}

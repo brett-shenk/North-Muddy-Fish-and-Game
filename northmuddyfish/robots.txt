@@ -1,0 +1,36 @@
+
+# This should be placed in the root website folder
+
+# Designate site map, if one exists.
+# Sitemap: /sitemap.xml
+
+# RULES: General Search Website Rules.
+User-agent: *
+Disallow: /cgi-bin
+Disallow: /scripts
+Disallow: /wp-admin
+Disallow: /wp-includes
+Disallow: /wp-content/plugins
+Disallow: /wp-content/cache
+Allow: /wp-content/cache/minify
+Disallow: /trackback
+Disallow: /comments
+Disallow: /category/*/*
+Disallow: */trackback
+Disallow: */comments
+Disallow: /tag/
+Allow: /wp-content/uploads
+
+# Set crawl speed for search engines.
+# (Most search engines use this.)
+Crawl-delay: 3
+
+# Google Image
+User-agent: Googlebot-Image
+Disallow:
+Allow: /*
+
+# Google AdSense
+User-agent: Mediapartners-Google*
+Disallow:
+Allow: /*

@@ -1,0 +1,121 @@
+@charset "utf-8";
+/**
+ * Template: Page Size Background Image
+**/
+
+// Variables, Tools, Mixins
+@import "setup/variables";
+@import "setup/tools";
+// @import "setup/animations";
+
+
+// Custom Functions
+@mixin white_background {
+    background-color: rgba(255, 255, 255, .7);
+    border-radius: 24px;
+}
+@mixin white_background_reset {
+    h1, h2, h3, h4, h5, h6 {
+        text-shadow: none;
+    }
+    p:not([role="button"]), th, td, blockquote{
+        background-color: transparent;
+        border-radius: unset;
+    }
+}
+
+
+// Both FE and BE
+body.page-templatesbackground-image .editor-styles-wrapper .is-root-container,
+body.page-template-background-image #main > .entry{
+    margin-bottom: 0;
+    padding-bottom: 3.75em;
+    
+    h1, h2, h3, h4, h5, h6 {
+        text-shadow: 2px -2px 3px $color_white, -2px -2px 3px $color_white, 2px 2px 3px $color_white, -2px 2px 3px $color_white;
+    }
+    hr {
+        box-shadow: 0px 0px 4px 2px $color_white;
+    }
+    p:not([role="button"]), th, td, blockquote{
+        @include white_background();
+        padding: convert(18px, 'em');
+    }
+    p:not([role="button"]){
+        margin-bottom: 2.6em;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+    & > p:not([role="button"]), & > blockquote, & > table td, & > table th {
+        max-width: calc( var(--wp--style--global--content-size) - 2em );
+        
+        @media (max-width: 1400px){
+            margin-left: 1em;
+            margin-right: 1em;
+            width: auto;
+        }
+    }
+    img[src$=".svg"]{
+        filter: drop-shadow(2px 2px 1px rgba(255, 255, 255, 0.7)) drop-shadow(-2px 2px 1px rgba(255, 255, 255, 0.7)) drop-shadow(0px -2px 1px rgba(255, 255, 255, 0.7));
+    }
+}
+body.page-templatesbackground-image .editor-styles-wrapper .is-root-container,
+body.page-template-background-image #main{
+    .frequently-asked-q-container{
+        &:not(:last-of-type){
+            margin-bottom: 1.25em;
+        }
+        .accordion-container{
+            @include white_background();
+            @include white_background_reset();
+            margin-top: convert(20px, 'em');
+    
+            hr {
+                box-shadow: none;
+            }
+            & > .acf-innerblocks-container > *{
+                padding: 0 convert(18px, 'em') convert(18px, 'em') convert(18px, 'em');
+            }
+        }
+    }
+}
+body.page-templatesbackground-image .editor-styles-wrapper .is-root-container,
+body.page-template-background-image #main{
+    .resources-blk-container{
+        @include white_background();
+        @include white_background_reset();
+        padding: convert(18px, 'em');
+
+        .resource-content {
+            & > *{
+                padding: 0!important;
+            }
+        }
+    }
+}
+
+// FE
+body.page-template-background-image{
+    #main{
+        position: relative;
+    }
+}
+.page-background-image {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+// BE
+body.page-templatesbackground-image .editor-styles-wrapper{
+    .components-dropdown.block-editor-inserter{
+        box-shadow: 0px 0px 4px 2px $color_white;
+    }
+}

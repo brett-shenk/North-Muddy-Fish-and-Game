@@ -1,0 +1,35 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "version": "1.0.0",
+    "name": "shenk/sidebar-accordion",
+    "title": "Sidebar Accordion Menu",
+    "description": "A header field over an editable content area that shows as an accordion menu.",
+    "keywords": [
+        "accordion menu", "accordion sidebar", "accordion", "sidebar accordion menu", "menu accordion sidebar", "accordion menu sidebar",
+        "accordion sidebar menu", "sidebar menu accordion", "menu sidebar accordion", "menu accordion", "sidebar accordion"
+    ],
+    "icon": "arrow-down",
+    "category": "design",
+    "supports": {
+        "mode": false,
+        "jsx": true,
+        "html": false,
+        "align": false,
+        "className": false,
+        "customClassName": false,
+        "spacing": {
+            "margin": true,
+            "padding": true
+        }
+    },
+    "style": [ "block-sidebar-accordion" ],
+    "viewScript": [ "file:./dist/script.min.js" ],
+    "acf": {
+        "mode": "preview",
+	    "renderTemplate": "includes/blocks/sidebar-accordion/block.php"
+    },
+    "example": {
+        "attributes": {}
+    }
+}

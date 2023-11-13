@@ -1,0 +1,181 @@
+@charset "utf-8";
+/**
+ * @author		Brett Shenk  https://www.linkedin.com/in/brett-shenk-59480794/
+ * @copyright	North Muddy Fish and Game Association  2023
+ * 
+ * @package  	Login CSS File
+ * @version		1.0
+**/
+
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+// Variables, Tools, Mixins
+@import "setup/variables";
+@import "setup/tools";
+// @import "setup/animations";
+@import "setup/system_classes";
+@import "global/icons";
+
+// Sitewide Styles
+@import "global/typography";
+
+// Layout
+@import "layout/forms";
+
+/**
+ * All WordPress Login Parameters
+ * 
+ * Reset Password
+ * http://example.com/wp-login.php?action=rp
+ * http://example.com/wp-login.php?action=resetpass
+ * http://example.com/wp-login.php?action=lostpassword
+ * http://example.com/wp-login.php?action=lostpassword&error=invalidkey
+ * 
+ * Registration
+ * http://example.com/wp-login.php?action=register
+ * http://example.com/wp-login.php?checkemail=confirm
+ * http://example.com/wp-login.php?checkemail=registered
+ * http://example.com/wp-login.php?registration=disabled
+ * 
+ * Logged Out
+ * http://example.com/wp-login.php?loggedout=true
+**/
+html, body {
+	background-color: $color_secondary;
+}
+html {
+	-webkit-text-size-adjust: 100%;
+}
+body {
+	min-height: 90vh;
+}
+.site-main {
+	position: relative;
+	overflow: hidden;
+}
+.wrapper {
+	max-width: var(--wp--style--global--content-size);
+	margin: 0 auto;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+.site-main .wrapper {
+	h1, h2, h3 {
+        color: $color_black;
+    }
+}
+body.login{
+	div#login {
+		padding: 2em 0 0;
+
+		h1 a {
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: contain;
+			width: 100%;
+			max-width: none;
+			
+			@media (max-width: 999px){
+				height: 140px;
+			}
+			@media (min-width: 1000px){
+				width: 600px;
+				transform: translateX(-140px);
+			}
+		}
+		.message, #login_error {
+			border: none;
+			box-shadow: none;
+			line-height: 1.6;
+			color: $color_white;
+		}
+		#login_error{
+			background: $color_error;
+		}
+		.message{
+			background: $color_primary;
+		}
+		form#loginform,
+		form#lostpasswordform {
+			label {
+				font-size: 16px;
+				color: $color_black;
+			}
+			input {
+				margin-right: 0;
+				color: $color_black;
+			}
+			.button.wp-hide-pw {
+				color: $color_black;
+			}
+			p {
+				input[type="submit"],
+				input#wp-submit,
+				.itsec-pwls-login__link {
+					padding-top: 0.75em;
+					padding-right: 1.375em;
+					padding-bottom: 0.75em;
+					padding-left: 1.375em;
+					border: 0;
+					font-weight: bold;
+					font-size: 16px;
+					line-height: 1.3;
+					background-color: $color_black;
+					color: $color_white;
+					border-radius: 10px;
+					transition: all .25s ease-in-out;
+
+					&:hover {
+						background-color: $color_primary;
+					}
+				}
+			}
+		}
+		input:focus, textarea:focus{
+			outline-width: 2px;
+			outline-style: solid;
+			outline-color: Highlight;
+		}
+		input[type="text"], 
+		input[type="password"], 
+		input[type="search"], 
+		input[type="email"], 
+		input[type="url"], 
+		input[type="tel"], 
+		input[type="number"], 
+		textarea {
+			background-color: #D8D8D8;
+			border: 2px solid $color_primary;
+			padding: 0.5em;
+			font-size: 1.23em;
+			min-height: auto;
+		}
+		input[type="checkbox"]{
+			& + label{
+				&:after{
+					line-height: 1.2!important;
+				}
+			}
+		}
+		p#nav a, p#backtoblog a, .privacy-policy-link {
+			color: $color_black;
+			text-decoration: none;
+			font-size: 14px;
+		}
+		#backtoblog, #nav{
+			padding: 0px 6px;
+		}
+	}
+}
+
+/** 
+ * The interim login screen is displayed when you are working in the WordPress
+ * Admin Area and for some reason the session expires and you are logged out.
+ * 
+ * Make it think your session expired with the following JavaScript
+ * jQuery(document).trigger('heartbeat-tick.wp-auth-check', [ {'wp-auth-check': false} ]);
+*/
+// body.interim-login {
+// }

@@ -1,0 +1,42 @@
+@charset "utf-8";
+/**
+ * @author		Brett Shenk  https://www.linkedin.com/in/brett-shenk-59480794/
+ * @copyright	North Muddy Fish and Game Association  2023
+ * 
+ * @package  	WordPress Error Page
+ * @version		1.0
+**/
+
+// Variables, Tools, Mixins
+@import "setup/variables";
+@import "setup/tools";
+// @import "setup/animations";
+
+body.error404 {
+    .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){
+        margin-right: 0!important;
+    }
+    article.entry{
+        margin-bottom: 0;
+
+        h1 {
+            @media (max-width: 500px) {
+                font-size: 70px!important;
+            }
+        }
+    }
+    .wp-block-cover__inner-container{
+        h1, h2, p, .wp-block-buttons {
+            @media (max-width: 1400px) {
+                max-width: 800px;
+                margin-left: 30%!important;
+            }
+            @media (max-width: 500px) {
+                margin-left: 21%!important;
+            }
+            @media (max-width: 390px) {
+                margin-left: 0!important;
+            }
+        }
+    }
+}

@@ -1,0 +1,90 @@
+@charset "utf-8";
+/**
+ * @author		Brett Shenk  https://www.linkedin.com/in/brett-shenk-59480794/
+ * @copyright	North Muddy Fish and Game Association  2023
+ * 
+ * @package  	Gutenberg Editor CSS
+ * @version		1.0
+**/
+
+// Variables, Tools, Mixins
+@import "../setup/variables";
+@import "../setup/tools";
+@import "../setup/animations";
+@import "../setup/reset";
+
+// Sitewide Styles
+@import "../global/typography";
+@import "../global/media";
+@import "../global/gutenberg";
+@import "../global/gutenberg-custom";
+
+body#tinymce{   // TinyMCE Only
+    padding: 1em!important;
+    margin: 0!important;
+
+    &.description {
+        background-color: $color_white;
+        font-size: 16px;
+    }
+}
+body{
+    .is-root-container{
+        padding-bottom: convert(35px, "em")!important;
+    }
+    & > div > * {
+        &:not(.alignfull):not(.alignwide){      // PX not EM because EM + EM = even larger
+            padding-left: 16px;
+            padding-right: 16px;
+            width: 95%;
+        }
+    }
+}
+body[data-widget-area-id="footer_column_one"], 
+body[data-widget-area-id="footer_column_two"], 
+body[data-widget-area-id="footer_column_three"], 
+body[data-widget-area-id="wp_inactive_widgets"]{
+    ol, ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        
+        li{
+            font-size: convert(17px, "em");
+            line-height: 1.5;
+            margin-bottom: .8em;
+            
+            &:last-of-type{
+                margin-bottom: 0;
+            }
+            a{
+                color: $color_black;
+                font-size: inherit;
+                @include animate_draw_line($color_third);
+            }
+        }
+    }
+    .block-editor-block-list__layout{
+        background-color: $color_white!important;
+    }
+    & > div > * {
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+// Overriding WP generated css
+.edit-post-visual-editor__post-title-wrapper {
+    margin-top: 0!important;
+    margin-bottom: convert(35px, "em");
+    padding-top: 1em!important;
+    padding-bottom: 1em!important;
+    background-color: $color_primary;
+
+    h1 {
+        padding-left: 0!important;
+        padding-right: 0!important;
+        color: $color_white;
+        text-align: center;
+    }
+}

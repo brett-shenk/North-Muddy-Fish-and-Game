@@ -1,0 +1,35 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "version": "1.0.0",
+    "name": "shenk/user-list",
+    "title": "Member List",
+    "description": "Display all of the current users of a specific role. The content is populated from their profile.",
+    "keywords": [
+        "member list", "user list", "subscriber list", "officer list", "officer names", "member names", "user names", "username",
+        "list of contacts", "contact names", "customer list", "client list", "customer names", "client names", "members list"
+    ],
+    "icon": "id",
+    "category": "custom_theme",
+    "supports": {
+        "jsx": true,
+        "html": false,
+        "align": false,
+        "className": false,
+        "customClassName": false,
+        "spacing": {
+            "margin": true,
+            "padding": true,
+            "blockGap": [ "horizontal", "vertical" ]
+        }
+    },
+    "style": [ "block-user-list" ],
+    "acf": {
+        "mode": "preview",
+	    "renderTemplate": "includes/blocks/user-list/block.php"
+    },
+    "example": {
+        "attributes": {}
+    },
+    "parent": ["shenk/tab-module"]
+}

@@ -1,0 +1,73 @@
+@charset "utf-8";
+/**
+ * @author		Brett Shenk  https://www.linkedin.com/in/brett-shenk-59480794/
+ * @copyright	North Muddy Fish and Game Association  2023
+ * 
+ * @package  	Primary CSS File
+ * @version		1.0
+**/
+
+@media screen and (min-width: 1023px) {
+	html{
+		--scroll-behavior: smooth;
+		scroll-behavior: smooth;
+	}
+}
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+html, div, span, applet, object, p,
+a, abbr, acronym, address, big, cite,
+del, dfn, ins, q, s, fieldset, label,
+small, strike, sub, sup, tt, var,
+u, center, dl, blockquote,
+table, caption, tbody, tfoot, thead, tr, th, td
+article, aside, canvas, details, embed, map,
+figure, figcaption, footer, header, hgroup,
+nav, output, ruby, section, summary,
+time, mark, audio, video, data {
+	font-size: 1em;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+body{
+	font-size: 1em;
+	vertical-align: baseline;
+	overflow: hidden;
+}
+table, caption, tbody, tfoot, thead, tr, th, td{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+em, i {
+	font-style: italic;
+	font-family: inherit;
+}
+
+// Variables, Tools, Mixins
+@import "setup/reset";
+@import "setup/variables";
+@import "setup/tools";
+@import "setup/animations";
+@import "setup/system_classes";
+@import "global/icons";
+
+// Sitewide Styles
+@import "global/typography";
+@import "global/media";
+@import "global/gutenberg";
+@import "global/gutenberg-custom";
+
+// Vendor
+// @import "vendor/slick";
+@import "vendor/hamburgers";
+@import "vendor/mmenu-light";
+
+// Layout
+@import "layout/header";
+@import "layout/navigation";
+@import "layout/footer";
+@import "layout/forms";
+@import "layout/document-center";
+@import "layout/blog_posts";

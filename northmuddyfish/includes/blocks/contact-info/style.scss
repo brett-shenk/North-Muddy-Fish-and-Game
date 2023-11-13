@@ -1,0 +1,70 @@
+@charset "utf-8";
+
+// Variables, Tools, Mixins
+@import "../../../assets/sass/setup/variables";
+// @import "../../../assets/sass/setup/tools";
+// @import "../../../assets/sass/setup/animations";
+
+.contact-info-container.block-type{
+    &.type-phone, &.type-email, &.type-address a, &.type-link{
+        span{
+            position: relative;
+            display: inline-block;
+
+            &:before {
+                content: '';
+                border-bottom-width: 2px;
+                border-bottom-style: solid;
+                width: 0;
+                transition: width .5s ease;
+                position: absolute;
+                bottom: -1px;
+                left: 0;
+            }
+        }
+    }
+    &.type-phone{
+        svg {
+            margin-right: .1em;
+        }
+    }
+    &.type-email{
+        svg {
+            margin-right: .3em;
+        }
+    }
+    &.type-link{
+        svg {
+            margin-right: .2em;
+        }
+    }
+    // &.type-address{}
+}
+.contact-info-container{
+    a, & > div{
+        display: inline-flex;
+        align-items: center;
+    }
+    & > div{
+        color: $color_black;
+    }
+    svg {
+        fill: $color_black;
+        transition: all 0.25s ease-out;
+    }
+    a, a:visited{
+        color: $color_black;
+
+        &:hover, &:active{
+            color: $color_third;
+
+            svg{
+                fill: $color_third;
+            }
+            span:before {
+                border-bottom-color: $color_third;
+                width: 100%!important;
+            }
+        }
+    }
+}

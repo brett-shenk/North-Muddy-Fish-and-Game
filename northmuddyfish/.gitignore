@@ -1,0 +1,37 @@
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Visual Studio Code
+.vscode/
+
+# Atom
+.ftpconfig
+
+# Build files
+node_modules/
+dist/
+
+# Backups
+*.bak
+*.old
+*~
+
+# Log Files
+*.log
+
+# Temporary Files/Folders
+tmp
+.tmp
+*.tmp
+temp
+
+# Compressed files
+*.tar
+*.tar.*
+*.7z
+*.gz
+*.gzip
+*.zip
+*.rar

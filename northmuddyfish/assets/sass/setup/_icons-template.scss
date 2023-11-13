@@ -1,0 +1,95 @@
+/**
+ * Icon Font
+ * 
+ * @author		Brett Shenk
+ * @version		1.2
+ * @license		none (public domain)
+ * @copyright	2021
+ * 
+ * @internal	PREVIEW The SVG Here
+ * @link		https://icomoon.io/app/#/select
+ * 
+ * @output		[_icons.scss] IS A GENERATED FILE
+ * @output		To add the icon to a class that isn't generated, add your CSS below `Custom Icons` on `_icons-template.scss`
+**/
+
+@font-face {
+	font-family: '<%= fontName %>';
+	font-display: block;
+	src: url('<%= fontPath %><%= fontName %>.woff2<%= cacheBusterQueryString %>') format('woff2'),
+		url('<%= fontPath %><%= fontName %>.woff<%= cacheBusterQueryString %>') format('woff'),
+		url('<%= fontPath %><%= fontName %>.ttf<%= cacheBusterQueryString %>') format('truetype'),
+		url('<%= fontPath %><%= fontName %>.svg<%= cacheBusterQueryString %>#<%= fontName %>') format('svg');
+}
+
+@mixin <%= cssClass%>-styles {
+	font-family: "<%= fontName %>";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: none;
+	display: inline-block;
+	line-height: inherit;
+	vertical-align: bottom;
+	transition: all 0.25s ease-out;
+}
+
+%<%= cssClass%> {
+	@include <%= cssClass%>-styles;
+}
+
+@function <%= cssClass%>-char($filename) {
+	$char: "";
+<% _.each(glyphs, function(glyph) { %>
+	@if $filename == <%= glyph.fileName %> {
+		$char: "\<%= glyph.codePoint %>";
+	}<% }); %>
+
+	@return $char;
+}
+
+@mixin <%= cssClass%>($filename, $insert: before, $extend: true) {
+	&:#{$insert} {
+		@if $extend {
+			@extend %<%= cssClass%>;
+		} @else {
+			@include <%= cssClass%>-styles;
+		}
+		content: <%= cssClass%>-char($filename);
+	}
+}
+
+<% _.each(glyphs, function(glyph) { %>.<%= cssClass%>-<%= glyph.fileName %> {
+	@include <%= cssClass%>(<%= glyph.originalFileName ? glyph.originalFileName : glyph.fileName %>);
+}
+<% }); %>
+
+
+/**
+ * Custom Icons
+ * 
+ * WARNING: Edit  icons-template.scss
+ * TIP: [class*='icon-'] to target any icon
+**/
+.slick-prev, [dir='rtl'] .slick-next {
+	@include icon(chevron-left);
+}
+.slick-next, [dir='rtl'] .slick-prev {
+    @include icon(chevron-right);
+}
+ul.menu > li.menu__item--has-children{
+	@include icon(chevron-left, after);
+}
+.accordion-header {
+    @include icon(chevron-right, after);
+}
+body.login div#login form#loginform, body.login div#login form#lostpasswordform,
+form .input-wrap {
+	input[type="checkbox"]:checked + label, input[type="checkbox"] + label {
+		@include icon(checkmark, after);
+	}
+}
+.facetwp-type-checkboxes .facetwp-checkbox.checked{
+	@include icon(checkmark);
+}

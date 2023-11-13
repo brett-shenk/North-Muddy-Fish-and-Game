@@ -1,0 +1,39 @@
+{
+	"name": "northmuddy.com",
+	"version": "1.1.0",
+	"description": "WordPress Block Task Runner",
+	"license": "AGPL-3.0-only",
+	"author": "Brett Shenk",
+	"engines": {
+		"node": ">=16.13.1",
+		"npm": ">=8.1.2",
+		"gulp": "4.0"
+	},
+	"devDependencies": {
+		"gulp-notify": "^4.0.0",
+		"gulp-postcss": "^9.0.0",
+		"postcss": "^8.3.6"
+	},
+	"dependencies": {
+		"autoprefixer": "^10.3.2",
+		"browserslist": "^4.16.8",
+		"gulp": "^4.0.2",
+		"gulp-cli": "^2.3.0",
+		"gulp-rename": "^2.0.0",
+		"gulp-sass": "5.0.0",
+		"gulp-sourcemaps": "3.0.0",
+		"gulp-uglify": "^3.0.2",
+		"node-sass": "^7.0.0"
+	},
+	"browserslist": [
+		"last 3 versions",
+		"not dead",
+		"not ie 11"
+	],
+	"scripts": {
+		"init": "npm update",
+		"watch": "gulp",
+		"buildDev": "gulp dev",
+		"buildProd": "gulp prod"
+	}
+}

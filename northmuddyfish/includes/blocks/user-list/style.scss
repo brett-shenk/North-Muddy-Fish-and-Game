@@ -1,0 +1,80 @@
+@charset "utf-8";
+
+// Variables, Tools, Mixins
+@import "../../../assets/sass/setup/variables";
+@import "../../../assets/sass/setup/tools";
+// @import "../../../assets/sass/setup/animations";
+
+.user-block {
+    display: flex;
+    gap: 1.25em;
+    margin-bottom: 1.4em;
+
+    & > .column{
+        flex-shrink: 0;
+    }
+    .column + .column{
+        flex-shrink: 1;
+        flex-grow: 1;
+    }
+    a.link, div.link {
+        display: inline-flex;
+        align-items: center;
+        color: $color_black;
+        position: relative;
+        padding-left: 2em;
+        margin-top: 1.2em;
+
+        strong{
+            font-weight: 900;
+        }
+        svg {
+            position: absolute;
+            left: -0.6em;
+            top: 50%;
+            transform: translateY(-49%) scale(0.5);
+        }
+        span {
+            color: inherit;
+            position: relative;
+            display: inline-block;
+            font-weight: 600;
+            font-size: convert(13px, 'em');
+
+            &:before {
+                content: '';
+                border-bottom-width: 2px;
+                border-bottom-style: solid;
+                width: 0;
+                transition: width .5s ease;
+                position: absolute;
+                bottom: -1px;
+                left: 0;
+            }
+        }
+        &:nth-of-type(1){
+            margin-right: 1em;
+        }
+    }
+    a.link:hover, a.link:active{
+        color: $color_third;
+
+        svg{
+            fill: $color_third;
+        }
+        span:before {
+            border-bottom-color: $color_third;
+            width: 100%!important;
+        }
+    }
+}
+@media (max-width: 650px){
+    .user-block {
+        display: block;
+
+        .column + .column{
+            margin-top: 1em;
+            margin-bottom: .1em;
+        }
+    }
+}

@@ -1,0 +1,264 @@
+@charset "utf-8";
+/**
+ * @author		Brett Shenk  https://www.linkedin.com/in/brett-shenk-59480794/
+ * @copyright	North Muddy Fish and Game Association  2023
+ * 
+ * @package  	WordPress Posts Page
+ * @version		1.0
+**/
+
+// Variables, Tools, Mixins
+@import "setup/variables";
+@import "setup/tools";
+// @import "setup/animations";
+
+/**
+ * Search Page
+**/
+.search-form{
+    display: flex;
+    flex-basis: 100%;
+
+    .search-button{
+        border: none;
+        margin-left: 1em;
+    }
+    .search-icon {
+        fill: white;
+    }
+}
+.wp-block-search .wp-block-search__input:focus{
+    outline-width: 2px!important;
+    outline-style: solid!important;
+    outline-color: Highlight!important;
+}
+article.entry.search {
+    .wp-block-button {
+        margin-top: .5em;
+    }
+    .post-archive-container{
+        .single-post-container {
+            @media (max-width: 950px) {
+                flex-basis: 47%!important;
+            }
+            @media (max-width: 650px) {
+                flex-basis: unset!important;
+            }
+            &:nth-of-type(1), &:nth-of-type(2){
+                flex-basis: 31.2%!important;
+
+                @media (max-width: 950px) {
+                    flex-basis: 47%!important;
+                }
+                @media (max-width: 650px) {
+                    flex-basis: unset!important;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Post Archive Page
+**/
+article.type-post, article.entry.search{
+    & > .wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5em;
+
+        @media (max-width: 1160px) {
+            flex-direction: column;
+            gap: 1em;
+        }
+        .post-archive-content {
+            order: 2;
+            
+            @media (min-width: 1161px) {
+                flex-basis: calc(100% - 285px - 2.5em);
+            }
+        }
+        #post_archive_sidebar {
+            order: 1;
+
+            @media (min-width: 1161px) {
+                flex-basis: 285px;
+            }
+        }
+    }
+    h1, h2, h3, h4, h5, h6 {
+        a {
+            color: $color_black;
+
+            &:hover {
+                color: $color_third;
+            }
+        }
+    }
+    .post-archive-container{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2em;
+        width: 100%;
+
+        .single-post-container {
+            flex-basis: 31.2%;
+
+            @media (max-width: 1360px) {
+                flex-basis: 30.5%;
+            }
+            @media (max-width: 850px) {
+                flex-basis: 47%;
+            }
+            @media (max-width: 650px) {
+                flex-basis: unset;
+                width: 100%;
+            }
+            &:nth-of-type(1), &:nth-of-type(2){
+                flex-basis: 48%;
+
+                @media (max-width: 850px) {
+                    flex-basis: 47%;
+                }
+                @media (max-width: 650px) {
+                    flex-basis: unset;
+                    width: 100%;
+                }
+            }
+            h2 {
+                font-size: 1.75em;
+            }
+            .featured-image {
+                line-height: 0;
+
+                & > a {
+                    display: block;
+                    transform: scale(1);
+                    height: 345px;
+                    overflow: hidden;
+                    position: relative;
+
+                    @media (max-width: 650px) {
+                        height: auto;
+                        width: 100%;
+                    }
+                    &:hover {
+                        transform: scale(.95);
+                    }
+                }
+                img {
+                    position: absolute;
+                    height: 345px;
+                    width: auto;
+                    max-width: none;
+
+                    @media (max-width: 650px) {
+                        position: static;
+                        height: auto;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+    .pagination{
+        text-align: center;
+        margin-top: 2.3em;
+        width: 100%;
+
+        .page-numbers{
+            padding: 0.5em 0.4em;
+            background-color: transparent;
+            color: $color_primary;
+
+            &:hover {
+                background-color: $color_primary;
+                color: white;
+            }
+            &.current{
+                background-color: $color_primary;
+                color: white;
+            }
+            &.next, &.prev{
+                [class*='icon-']:before {
+                    font-size: 1.9em;
+                    line-height: 0.6;
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Sidebar
+**/
+#post_archive_sidebar {
+    .wp-block-search.wp-block-search__searchfield-hidden .wp-block-search__input{
+        width: 100%!important;
+        border-left-width: 2px!important;
+        flex-basis: unset;
+        padding-left: 0.5em!important;
+    }
+    .widget.widget_block{
+        margin-bottom: 1.5em;
+
+        .is-layout-flex{
+            gap: 12px;
+        }
+    }
+}
+#post_archive_sidebar .wp-block-search__button, #search-form .search-button{
+    position: relative;
+    overflow: hidden;
+    z-index: map-get($z-layers, "z-index-button");
+    box-shadow: 0px 0px 0px 0px white;
+    transition: .25s all cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    padding: 0.4em 0.7em;
+    
+    &:before{
+        @include pseudo-element($width: 400px);
+        background: rgb(0,38,75);
+        background: linear-gradient(90deg, rgba(0,37,74,1) 10%, rgba(0,1,2,1) 70%);
+        transition: .25s all cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    }
+    &:hover{
+        box-shadow: 0px 0px 6px 0px black;
+        
+        &:before{
+            left: -100%;
+        }
+    }
+}
+
+/**
+ * Single Post Page
+**/
+body.single-post{
+    article.type-post > .wrapper {
+        gap: 0;
+    }
+    .featured-image{
+        max-height: 400px;
+        overflow: hidden;
+        
+        img {
+            max-width: none;
+            width: 100%;
+            max-height: none;
+            height: auto;
+        }
+    }
+    .entry-title{
+        text-align: center;
+        margin-top: 1.2em;
+        width: 100%;
+
+        span {
+            display: block;
+        }
+    }
+    .after-post-content-info {
+        margin-top: 1.8em;
+    }
+}

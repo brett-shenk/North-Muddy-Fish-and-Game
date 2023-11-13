@@ -55,11 +55,11 @@ The can-i-use for Gulp in processing SASS. Auto including helpful stuff for olde
 
 ## Additional Sections
 
-#### [Theme Functionality](./documentation/FUNCTIONALITY.md)
+#### [Theme Functionality](./northmuddyfish/documentation/FUNCTIONALITY.md)
 
-#### [Resources](./documentation/RESOURCE.md)
+#### [Resources](./northmuddyfish/documentation/RESOURCE.md)
 
-#### [WordPress Functions](./documentation/CORE.md)
+#### [WordPress Functions](./northmuddyfish/documentation/CORE.md)
 
 #### Icon Preparation
 - Color does not matter. It's changed to black regardless.

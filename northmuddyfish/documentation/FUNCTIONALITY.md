@@ -1,4 +1,4 @@
-<small> [Back to Readme](./../README.md) </small>
+<small> [Back to Readme](./../../README.md) </small>
 
 # Theme Functionality
 

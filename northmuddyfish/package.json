@@ -44,8 +44,6 @@
 		"buildProd": "gulp prod",
 		"icons": "gulp icons",
 		"generateFont": "gulp fonts",
-		"desktopSpeedReport": "lighthouse http://192.168.0.241:8080/ --preset=desktop --view",
-		"mobileSpeedReport": "lighthouse http://192.168.0.241:8080/ --view",
 		"supportedBrowsers": "npx browserslist",
 		"updateBrowsers": "npx browserslist@latest --update-db",
 		"update": "npm update",

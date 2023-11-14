@@ -9,13 +9,16 @@ add_filter('body_class', function( $classes ){
 		$classes[] = 'preview-mode';
 		return $classes;
 	}
-	if( get_query_var('is_my_account_login') ){
-		$classes[] = 'my-account-login';
+
+	if( class_exists( 'ACF' ) && ! empty( get_field('my_account_page', 'options') ) ){
+		$my_account = get_field('my_account_page', 'options');
+		$my_account = $my_account->ID;
+	} else {
+		$my_account = url_to_postid( get_option('siteurl') );
 	}
-	if( get_query_var('is_my_account_register') ){
-		$classes[] = 'my-account-register';
-	}
-	if( get_query_var('is_my_account') ){
+	$page_id = get_queried_object_id();
+
+	if( $my_account === $page_id ){
 		$classes[] = 'my-account-page';
 	}
 	

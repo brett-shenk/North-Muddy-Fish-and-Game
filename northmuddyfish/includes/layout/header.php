@@ -102,6 +102,13 @@ function add_admin_link($items, $args){
 			$menu_location = 'my_account';
 			$locations = get_nav_menu_locations();
 
+			if( class_exists( 'ACF' ) && ! empty( get_field('my_account_page', 'options') ) ){
+				$my_account_url = get_field('my_account_page', 'options');
+				$my_account_url = esc_url( get_permalink( $my_account_url->ID ) );
+			} else {
+				$my_account_url = esc_url( home_url('/') );
+			}
+
 			// Check for My Account Menu and possibly add a log out link
 			if (isset($locations[$menu_location]) && $locations[$menu_location] != 0) {
 				$items .= wp_nav_menu( array(
@@ -120,7 +127,7 @@ function add_admin_link($items, $args){
 			
 			// Add My Account links
 			$my_account = '<li class="menu__item menu__item--has-children mobile">';
-				$my_account .= '<a href="'. esc_url( home_url('/my-account/') ) . '" class="menu__link">My Account</a>';
+				$my_account .= '<a href="'. $my_account_url . '" class="menu__link">My Account</a>';
 				$my_account .= '<ul>';
 				
 					foreach( $args['tabs'] as $tab ){
@@ -147,7 +154,7 @@ function add_admin_link($items, $args){
 					
 						if( $access ){
 							$my_account .= '<li class="menu__item menu__item--child">';
-								$my_account .= '<a href="'. esc_url( home_url("/my-account/?active_tab=". $slug) ) . '" class="menu__link">'. $tab_title .'</a>';
+								$my_account .= '<a href="'. esc_url( $my_account_url . "?active_tab=" . $slug ) . '" class="menu__link">'. $tab_title .'</a>';
 							$my_account .= '</li>';
 						}
 					}
@@ -159,12 +166,26 @@ function add_admin_link($items, $args){
 
 		// Not Logged-in
 		} else {
+			if( class_exists( 'ACF' ) && ! empty( get_field('user_login_page', 'options') ) ){
+				$site_login_url = get_field('user_login_page', 'options');
+				$site_login_url = esc_url( get_permalink( $site_login_url->ID ) );
+			} else {
+				$site_login_url = esc_url( home_url('wp-login.php') );
+			}
+		
+			if( class_exists( 'ACF' ) && ! empty( get_field('user_register_page', 'options') ) ){
+				$site_register_url = get_field('user_register_page', 'options');
+				$site_register_url = esc_url( get_permalink( $site_register_url->ID ) );
+			} else {
+				$site_register_url = esc_url( home_url('wp-login.php?action=register') );
+			}
+
 			$user_login = '<li class="menu__item mobile block-columns btn">';
 				$user_login .= '<div class="wp-block-button">';
-					$user_login .= '<a href="'. esc_url( home_url("/login/") ) .'" class="wp-block-button__link wp-element-button">Login</a>';
+					$user_login .= '<a href="'. $site_login_url .'" class="wp-block-button__link wp-element-button">Login</a>';
 				$user_login .= '</div>';
 				$user_login .= '<div class="wp-block-button">';
-					$user_login .= '<a href="'. esc_url( home_url("/register/") ) .'" class="wp-block-button__link wp-element-button">Create Account</a>';
+					$user_login .= '<a href="'. $site_register_url .'" class="wp-block-button__link wp-element-button">Create Account</a>';
 				$user_login .= '</div>';
 			$user_login .= '</li>';
 			
@@ -184,6 +205,13 @@ function my_account() {
 			$menu_location = 'my_account';
 			$locations = get_nav_menu_locations();
 
+			if( class_exists( 'ACF' ) && ! empty( get_field('my_account_page', 'options') ) ){
+				$my_account_url = get_field('my_account_page', 'options');
+				$my_account_url = esc_url( get_permalink( $my_account_url->ID ) );
+			} else {
+				$my_account_url = esc_url( home_url('/') );
+			}
+
 			/**
 			 * @see https://www.itsupportguides.com/knowledge-base/wordpress/using-wordpress-get_nav_menu_locations-php-function/
 			 */
@@ -199,7 +227,7 @@ function my_account() {
 				</ul>
 			<?php } ?>
 			
-			<a id="head-my-account-container" href="<?php echo esc_url( home_url('/my-account/') ); ?>">
+			<a id="head-my-account-container" href="<?php echo $my_account_url; ?>">
 				<img src="<?php echo get_avatar_url($user->ID, ['size' => '43']); ?>" width="43" height="43" alt="<?php echo get_users_name(); ?>'s Profile Image" />
 				<div class="block-columns">
 					<span class="my-account-name">
@@ -212,13 +240,26 @@ function my_account() {
 			</a>
 		</div>
 
-	<?php } else { ?>
+	<?php } else { 
+		if( class_exists( 'ACF' ) && ! empty( get_field('user_login_page', 'options') ) ){
+			$site_login_url = get_field('user_login_page', 'options');
+			$site_login_url = esc_url( get_permalink( $site_login_url->ID ) );
+		} else {
+			$site_login_url = esc_url( home_url('wp-login.php') );
+		}
+	
+		if( class_exists( 'ACF' ) && ! empty( get_field('user_register_page', 'options') ) ){
+			$site_register_url = get_field('user_register_page', 'options');
+			$site_register_url = esc_url( get_permalink( $site_register_url->ID ) );
+		} else {
+			$site_register_url = esc_url( home_url('wp-login.php?action=register') );
+		} ?>
 		<div class="my-account">
 			<ul class="menu">
-				<li><a href="<?php echo esc_url( home_url('/login/') ); ?>" class="menu__link">Login</a></li>
+				<li><a href="<?php echo $site_login_url; ?>" class="menu__link">Login</a></li>
 				<li>
 					<div class="wp-block-button">
-						<a href="<?php echo esc_url( home_url('/register/') ); ?>" class="wp-block-button__link wp-element-button">Create Account</a>
+						<a href="<?php echo $site_register_url; ?>" class="wp-block-button__link wp-element-button">Create Account</a>
 					</div>
 				</li>
 			</ul>

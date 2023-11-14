@@ -1,7 +1,15 @@
 <?php
 
+if( class_exists( 'ACF' ) && ! empty( get_field('my_account_page', 'options') ) ){
+    $my_account = get_field('my_account_page', 'options');
+    $my_account = $my_account->ID;
+} else {
+    $my_account = url_to_postid( get_option('siteurl') );
+}
+$page_id = get_queried_object_id();
+
 // Variables that are accessible on all my account page(s)
-if( get_query_var('is_my_account') ){
+if( $my_account === $page_id ){
     $user_id = get_current_user_id();
     $profile_user = get_userdata( $user_id );
 
@@ -10,6 +18,12 @@ if( get_query_var('is_my_account') ){
     $profile_user = '';
 }
 
+if( class_exists( 'ACF' ) && ! empty( get_field('my_account_page', 'options') ) ){
+    $my_account_url = get_field('my_account_page', 'options');
+    $my_account_url = esc_url( get_permalink( $my_account_url->ID ) );
+} else {
+    $my_account_url = esc_url( home_url('/') );
+}
 
 /**
  * @package      My Account Pages
@@ -28,6 +42,7 @@ if( get_query_var('is_my_account') ){
  */
 $args = [
     'data' => $profile_user,
+    'my-account-url' => $my_account_url,
     'tabs' => [
         'tab_1' => [ 
             'slug'          => 'account-details', 

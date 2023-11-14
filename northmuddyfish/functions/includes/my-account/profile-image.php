@@ -8,6 +8,7 @@
 $myoutube = '';
 $error_profile = new WP_Error();
 $user_id = $args['data']->ID;
+$the_my_account_url = $args['my-account-url'];
 
 // Has this form's submit button been clicked?
 if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_profile_img']) ){
@@ -27,7 +28,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_profile_img']) 
          */
         if( isset( $_FILES['avatar']['name'] ) ){
             $file_name = clean_hex( $file_name );
-            $file_name = trim( $file_name, '\n\r\t\v\x00' );
+            $file_name = trim( $file_name );
             $file_name = strip_tags( $file_name );
         }
 
@@ -234,7 +235,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_profile_img']) 
             unset( $_SESSION['token2'] );
 
             // Make sure the new image is properly loaded everywhere
-            header( 'Location:' . home_url('/my-account/?active_tab=profile-image&success=1') );
+            header( 'Location:' . esc_url( $the_my_account_url . '?active_tab=profile-image&success=1' ) );
         }
 
     // remote form posting attempted
@@ -245,7 +246,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_profile_img']) 
             <i class="icon-notification"></i>
             <p>
                 Something went wrong. Are you trying to do something you're not suppose to? 
-                <a href="<?php echo esc_url( home_url('/my-account/?active_tab=profile-image') ); ?>" rel="noopener">Here is a link to refresh.</a>
+                <a href="<?php echo esc_url( $the_my_account_url . '?active_tab=profile-image' ); ?>" rel="noopener">Here is a link to refresh.</a>
             </p>
         </div>
         <?php
@@ -286,7 +287,7 @@ $_SESSION['token2'] = $token2;
         ?>
     </div>
     <div class="column">
-        <form id="form-profile-image" name="form-profile-image" action="<?php echo esc_url( home_url('/my-account/?active_tab=profile-image') ); ?>" method="post" class="account-form-wrapper" enctype="multipart/form-data">
+        <form id="form-profile-image" name="form-profile-image" action="<?php echo esc_url( $the_my_account_url . '?active_tab=profile-image' ); ?>" method="post" class="account-form-wrapper" enctype="multipart/form-data">
 
             <input type="hidden" name="token2" value="<?php echo $token2; ?>" />
 

@@ -8,6 +8,7 @@
 $mytwitter = $description = $display_contact = $position = '';
 $error_officer_details = new WP_Error();
 $user_id = $args['data']->ID;
+$the_my_account_url = $args['my-account-url'];
 
 $position_terms = get_terms( 'positions', array( 'hide_empty' => false ) );
 
@@ -104,7 +105,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_officer_details
         $description = wp_kses( $description, $allowed_tags );
 
         // 1d.
-        $desc_temp = trim( $description, '\n\r\t\v\x00' );
+        $desc_temp = trim( $description );
         $desc_temp = str_replace(array( "\r","\n" ), "", $desc_temp);
         $desc_temp = wp_kses( $desc_temp, ['p'] );
         
@@ -157,7 +158,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_officer_details
             unset( $_SESSION['token3'] );
 
             // Success message
-            header( 'Location:' . home_url('/my-account/?active_tab=officer-details&success=1') );
+            header( 'Location:' . esc_url( $the_my_account_url . '?active_tab=officer-details&success=1' ) );
         }
 
     // remote form posting attempted
@@ -168,7 +169,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_officer_details
             <i class="icon-notification"></i>
             <p>
                 Something went wrong. Are you trying to do something you're not suppose to? 
-                <a href="<?php echo esc_url( home_url('/my-account/?active_tab=officer-details') ); ?>" rel="noopener">Here is a link to refresh.</a>
+                <a href="<?php echo esc_url( $the_my_account_url . '?active_tab=officer-details' ); ?>" rel="noopener">Here is a link to refresh.</a>
             </p>
         </div>
         <?php
@@ -225,7 +226,7 @@ if( isset( $description ) ){
 
     </div>
     <div class="column">
-        <form name="officer-details" action="<?php echo esc_url( home_url('/my-account/?active_tab=officer-details') ); ?>" method="post" class="account-form-wrapper">
+        <form name="officer-details" action="<?php echo esc_url( $the_my_account_url . '?active_tab=officer-details' ); ?>" method="post" class="account-form-wrapper">
         
             <div class="input-wrap">
                 <input type="hidden" name="token3" value="<?php echo $token3; ?>" />
@@ -265,7 +266,7 @@ if( isset( $description ) ){
                         'id'       	=> 'user-front-end-form',
                         'post_id'  	=> 'user_' . $user_id,
                         'form'		=> false,
-                        'return'	=> site_url() . '/my-account/?active_tab=officer-details&success=1',
+                        'return'	=> esc_url( $the_my_account_url . '?active_tab=officer-details&success=1' ),
                         'honeypot' 	=> false,
                         'instruction_placement' => 'field',
                         'fields'	=> ['field_654fb9a4b25ec']

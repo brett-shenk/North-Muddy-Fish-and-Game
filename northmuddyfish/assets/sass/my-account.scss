@@ -147,6 +147,7 @@ input[name="password"]{
     }
     &.infobox{
         display: flex;
+        flex-wrap: wrap;
 
         input{
             order: 1;

@@ -1,6 +1,6 @@
 <?php
 /**
- * My Account Register Page
+ * Template Name: User Registration
  */
 
 // Scripts for the page
@@ -32,6 +32,20 @@ add_action('entry', 'the_login_page', 8);
 function the_login_page(){
     global $wpdb, $user_ID;
     $first_name = $last_name = $email = $username = $password = $password_confirm = $mywebsite = '';
+
+    if( class_exists( 'ACF' ) && ! empty( get_field('user_login_page', 'options') ) ){
+        $site_login_url = get_field('user_login_page', 'options');
+        $site_login_url = esc_url( get_permalink( $site_login_url->ID ) );
+    } else {
+        $site_login_url = esc_url( home_url('wp-login.php') );
+    }
+
+    if( class_exists( 'ACF' ) && ! empty( get_field('user_register_page', 'options') ) ){
+        $site_register_url = get_field('user_register_page', 'options');
+        $site_register_url = esc_url( get_permalink( $site_register_url->ID ) );
+    } else {
+        $site_register_url = esc_url( home_url('wp-login.php?action=register') );
+    }
 
     session_start();
 
@@ -123,8 +137,7 @@ function the_login_page(){
                  *      5. Check maxlength is within required size
                  */
                 if( isset( $_POST['email'] ) ){
-                    $email = clean_hex( $_POST['email'] );
-                    $email = trim( $email, '\n\r\t\v\x00' );
+                    $email = trim( $email );
                     $email = strip_tags( $email );
                     $email = esc_attr( $email );
                 }
@@ -187,7 +200,13 @@ function the_login_page(){
                  */
                 if( isset( $_POST['password'] ) ){
                     $password = clean_hex( $_POST['password'] );
-                    $password = trim( $password, '\n\r\t\v\x00' );
+
+                    // Inform the user about a requirement
+                    if( str_starts_with($password, ' ') || str_ends_with($password, ' ') ){
+                        $error->add('password-spaces', 'Passwords can\'t start or end with a space.');
+                    }
+
+                    $password = trim( $password );
                     $password = strip_tags( $password );
                     $password = esc_attr( $password );
                 }
@@ -203,7 +222,7 @@ function the_login_page(){
 
                 if( $_POST['password_confirmation'] ){
                     $password_confirm = clean_hex( $_POST['password_confirmation'] );
-                    $password_confirm = trim( $password_confirm, '\n\r\t\v\x00' );
+                    $password_confirm = trim( $password_confirm );
                     $password_confirm = strip_tags( $password_confirm );
                     $password_confirm = esc_attr( $password_confirm );
                 }
@@ -271,7 +290,7 @@ function the_login_page(){
                     unset( $_SESSION['token'] );
 
                     // Success Message
-                    header( 'Location:' . get_bloginfo('url') . '/login/?success=1&u=' . $username );
+                    header( 'Location:' . $site_login_url . '?success=1&u=' . $username );
                 }
 
             // remote form posting attempted
@@ -284,7 +303,7 @@ function the_login_page(){
                     <i class="icon-notification"></i>
                     <p>
                         Something went wrong. Are you trying to do something you're not suppose to? 
-                        <a href="<?php echo esc_url( home_url('/register/') ); ?>" rel="noopener">Here is a link to refresh.</a>
+                        <a href="<?php echo $site_register_url; ?>" rel="noopener">Here is a link to refresh.</a>
                     </p>
                 </div>
                 <?php
@@ -305,7 +324,7 @@ function the_login_page(){
         <p>Your browser needs to support JavaScript in order to use this page.</p>
     </div></noscript>
 
-    <form name="register" action="<?php echo esc_url( home_url('/register/') ); ?>" method="post" class="account-form-wrapper background">
+    <form name="register" action="<?php echo $site_register_url; ?>" method="post" class="account-form-wrapper background">
         <h2>Register</h2>
 
         <input type="hidden" name="token" value="<?php echo $token; ?>" />

@@ -1,10 +1,17 @@
 <?php
 /**
- * My Account Login Page
+ * Template Name: My Account
  */
 
 if( ! is_user_logged_in() ){
-    header( 'Location:' . esc_url( home_url('/login/') ) );
+    if( class_exists( 'ACF' ) && ! empty( get_field('user_login_page', 'options') ) ){
+        $site_login_url = get_field('user_login_page', 'options');
+        $site_login_url = esc_url( get_permalink( $site_login_url->ID ) );
+    } else {
+        $site_login_url = esc_url( home_url('wp-login.php') );
+    }
+
+    header( 'Location:' . $site_login_url );
 }
 
 if (class_exists('ACF')) {

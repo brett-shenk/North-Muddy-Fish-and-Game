@@ -32,6 +32,13 @@ add_action('entry', 'the_login_page', 8);
 function the_login_page(){
     $username = $password = $mywebsite = '';
 
+    if( class_exists( 'ACF' ) && ! empty( get_field('user_login_page', 'options') ) ){
+        $site_login_url = get_field('user_login_page', 'options');
+        $site_login_url = esc_url( get_permalink( $site_login_url->ID ) );
+    } else {
+        $site_login_url = esc_url( home_url('wp-login.php') );
+    }
+
     session_start();
 
     // On form submission
@@ -85,7 +92,7 @@ function the_login_page(){
             }
             if( $is_email ){    // Email
                 $username = clean_hex( $_POST['username'] );
-                $username = trim( $username, '\n\r\t\v\x00' );
+                $username = trim( $username );
                 $username = strip_tags( $username );
                 $username = esc_attr( $username );
             } else {            // Username
@@ -120,7 +127,13 @@ function the_login_page(){
              */
             if( isset( $_POST['password'] ) ){
                 $password = clean_hex( $_POST['password'] );
-                $password = trim( $password, '\n\r\t\v\x00' );
+
+                // Inform the user about a requirement
+                if( str_starts_with($password, ' ') || str_ends_with($password, ' ') ){
+                    $error->add('password-spaces', 'Passwords can\'t start or end with a space.');
+                }
+
+                $password = trim( $password );
                 $password = strip_tags( $password );
                 $password = esc_attr( $password );
             }
@@ -226,7 +239,7 @@ function the_login_page(){
                 <i class="icon-notification"></i>
                 <p>
                     Something went wrong. Are you trying to do something you're not suppose to? 
-                    <a href="<?php echo esc_url( home_url('/login/') ); ?>" rel="noopener">Here is a link to refresh.</a>
+                    <a href="<?php echo $site_login_url; ?>" rel="noopener">Here is a link to refresh.</a>
                 </p>
             </div>
             <?php
@@ -251,10 +264,6 @@ function the_login_page(){
     $token = md5( uniqid(rand(), true) );
     $_SESSION['token'] = $token;
 
-    // Get the current page URL
-    $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-    $url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-
 
     
     // Warning for anyone trying to use no JavaScript ?>
@@ -263,7 +272,7 @@ function the_login_page(){
         <p>Your browser needs to support JavaScript in order to use this page.</p>
     </div></noscript>
 
-    <form name="login" action="<?php echo esc_url( $url ); ?>" method="post" class="account-form-wrapper background">
+    <form name="login" action="<?php echo $site_login_url; ?>" method="post" class="account-form-wrapper background">
         <h2>Login</h2>
 
         <input type="hidden" name="token" value="<?php echo $token; ?>" />

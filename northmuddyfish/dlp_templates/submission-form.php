@@ -35,7 +35,15 @@ $is_success = isset( $_GET['success'] ) && isset($_GET['active_tab']) && $_GET['
 	</div>
 <?php endif; ?>
 
-<form action="<?php echo esc_url( home_url('/my-account/?active_tab=submit-document') ); ?>" method="post" id="dlp-submit-form" class="account-form-wrapper dlp-submission-form dlp-theme-<?php echo esc_attr( $theme ); ?>" enctype="multipart/form-data">
+<?php
+if( class_exists( 'ACF' ) && ! empty( get_field('my_account_page', 'options') ) ){
+    $my_account_url = get_field('my_account_page', 'options');
+    $my_account_url = esc_url( get_permalink( $my_account_url->ID ) );
+} else {
+    $my_account_url = esc_url( home_url('/') );
+} ?>
+
+<form action="<?php echo esc_url( $my_account_url . '?active_tab=submit-document' ); ?>" method="post" id="dlp-submit-form" class="account-form-wrapper dlp-submission-form dlp-theme-<?php echo esc_attr( $theme ); ?>" enctype="multipart/form-data">
 
 	<?php do_action( 'dlp_before_submission_form' ); 
 	

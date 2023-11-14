@@ -8,6 +8,7 @@
 $first_name = $last_name = $nickname = $display_name = $email = $phone = $password_current = $password_new = $password_confirm = $myfacebook = '';
 $error_acc_details = new WP_Error();
 $user_id = $args['data']->ID;
+$the_my_account_url = $args['my-account-url'];
 
 // Display Name
 $public_display                     = array();
@@ -145,7 +146,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_account_details
          */
         if( isset( $_POST['email'] ) ){
             $email = clean_hex( $_POST['email'] );
-            $email = trim( $email, '\n\r\t\v\x00' );
+            $email = trim( $email );
             $email = strip_tags( $email );
             $email = esc_attr( $email );
         }
@@ -211,7 +212,13 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_account_details
         if( $possible_new_password ){
             if( isset( $_POST['current-password'] ) ){
                 $password_current = clean_hex( $_POST['current-password'] );
-                $password_current = trim( $password_current, '\n\r\t\v\x00' );
+
+                // Inform the user about a requirement
+                if( str_starts_with($password_current, ' ') || str_ends_with($password_current, ' ') ){
+                    $error->add('c-password-spaces', 'Current password can\'t start or end with a space.');
+                }
+
+                $password_current = trim( $password_current );
                 $password_current = strip_tags( $password_current );
                 $password_current = esc_attr( $password_current );
             }
@@ -254,7 +261,13 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_account_details
         if( $possible_new_password ){
             if( isset( $_POST['new-password'] ) ){
                 $password_new = clean_hex( $_POST['new-password'] );
-                $password_new = trim( $password_new, '\n\r\t\v\x00' );
+
+                // Inform the user about a requirement
+                if( str_starts_with($password_new, ' ') || str_ends_with($password_new, ' ') ){
+                    $error->add('password-spaces', 'New password can\'t start or end with a space.');
+                }
+
+                $password_new = trim( $password_new );
                 $password_new = strip_tags( $password_new );
                 $password_new = esc_attr( $password_new );
             }
@@ -270,7 +283,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_account_details
 
             if( $_POST['password_confirmation'] ){
                 $password_confirm = clean_hex( $_POST['password_confirmation'] );
-                $password_confirm = trim( $password_confirm, '\n\r\t\v\x00' );
+                $password_confirm = trim( $password_confirm );
                 $password_confirm = strip_tags( $password_confirm );
                 $password_confirm = esc_attr( $password_confirm );
             }
@@ -341,7 +354,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_account_details
             unset( $_SESSION['token1'] );
 
             // Success message
-            header( 'Location:' . home_url('/my-account/?active_tab=account-details&success=1') );
+            header( 'Location:' . esc_url( $the_my_account_url . '?active_tab=account-details&success=1' ) );
         }
 
     // remote form posting attempted
@@ -355,7 +368,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_account_details
             <i class="icon-notification"></i>
             <p>
                 Something went wrong. Are you trying to do something you're not suppose to? 
-                <a href="<?php echo esc_url( home_url('/my-account/?active_tab=account-details') ); ?>" rel="noopener">Here is a link to refresh.</a>
+                <a href="<?php echo esc_url( $the_my_account_url . '?active_tab=account-details' ); ?>" rel="noopener">Here is a link to refresh.</a>
             </p>
         </div>
         <?php
@@ -383,7 +396,7 @@ $_SESSION['token1'] = $token1;
     <p>Your browser needs to support JavaScript in order to use this page.</p>
 </div></noscript>
 
-<form name="account-details" action="<?php echo esc_url( home_url('/my-account/?active_tab=account-details') ); ?>" method="post" class="account-form-wrapper">
+<form name="account-details" action="<?php echo esc_url( $the_my_account_url . '?active_tab=account-details' ); ?>" method="post" class="account-form-wrapper">
     <br />
     
     <input type="hidden" name="token1" value="<?php echo $token1; ?>" />

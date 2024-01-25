@@ -156,7 +156,7 @@ jQuery( function($) {
                         if( $form_type == "profile-image" ){
                             $submit.html('Upload Image');
                         }
-                        if( $form_type == "lostpasswordform" ){
+                        if( $form_type == "lostpasswordform" || $form_type == "resetpasswordform" ){
                             if( $submit.parent('.wp-block-button').children('#somfrp_btn_txt')[0] !== undefined ){
                                 $submit.html( $submit.parent('.wp-block-button').children('#somfrp_btn_txt').val() );
                             } else {

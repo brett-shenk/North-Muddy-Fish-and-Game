@@ -67,6 +67,11 @@
         margin: 0;
         display: block;
     }
+
+    // Fix Lost Password Form
+    input[type="password"][class] {
+        max-width: 100%;
+    }
 }
 #toast-container{
     max-width: 530px;

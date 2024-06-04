@@ -43,6 +43,7 @@ function the_login_page(){
 
     // On form submission
     if( $_POST ){
+
         if ( $_POST['token'] == $_SESSION['token'] ){
         
             global $wpdb;
@@ -225,7 +226,8 @@ function the_login_page(){
                     unset( $_SESSION['token'] );
 
                     // Success message
-                    echo "<script type='text/javascript'>location.reload();</script>";
+					$login_url = esc_url( home_url('/my-account/') );
+					header('location: ' . $login_url);
                     exit();
                 }
             }

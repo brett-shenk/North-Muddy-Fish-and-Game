@@ -35,6 +35,7 @@ add_filter('big_image_size_threshold', '__return_false');
  * Ex: Unlimited Height     add_image_size( 'page_banner', 1920, 9999 );
 **/
 add_image_size( 'profile-image', 500, 500 );
+add_image_size( 'banner-image', 1300, 500, ['center', 'center'] );
 
 
 # Register Image Size Names
@@ -42,5 +43,6 @@ add_filter( 'image_size_names_choose', 'shenk_custom_sizes' );
 function shenk_custom_sizes( $sizes ) {
     return array_merge( $sizes, array(
         'profile-image'       => 'Profile',
+		'banner-image'        => 'Banner',
     ) );
 }

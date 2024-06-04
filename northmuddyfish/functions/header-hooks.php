@@ -85,6 +85,8 @@ function shenk_site_fonts(){ ?>
 
 /**
  * Show Admin Bar for the roles that need it
+ * 
+ * Restricted User Roles: subscriber, contributor
 **/
 if( is_user_logged_in() ){
     if( allow_user(3) ){
@@ -113,3 +115,18 @@ function hide_admin_bar(){ ?>
 	    }
     </style>
 <?php }
+
+/**
+ * Prevent certain user roles from getting to the Admin
+ * 
+ * Restricted User Roles: subscriber, contributor
+**/
+add_action( 'init', 'block_users_init' );
+function block_users_init() {
+	if( is_admin() && is_user_logged_in() ){
+		if( allow_user(3) == false && ! ( defined('DOING_AJAX') && DOING_AJAX ) ){
+			wp_redirect( home_url() );
+			exit;
+		}
+	}
+}

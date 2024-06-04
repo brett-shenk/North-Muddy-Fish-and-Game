@@ -26,7 +26,9 @@ if( defined( 'WPCF7_VERSION' ) ){
 	// }
 }
 
-add_filter( 'document_library_pro_enable_single_content_customization', '__return_false' );
+if(in_array('document-library-pro/document-library-pro.php', apply_filters('active_plugins', get_option('active_plugins')))){ 
+	add_filter( 'document_library_pro_enable_single_content_customization', '__return_false' );
+}
 
 # The Events Calendar Plugin Support
 // if( function_exists('tribe_classes') ){}

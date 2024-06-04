@@ -63,13 +63,16 @@ $args = [
             'page_title'    => 'Officer Details', 
             'icon'          => 'icon-badge',
             'access'        => 'true'
-        ],
-        'tab_4' => [ 
-            'slug'          => 'submit-document', 
-            'tab_title'     => 'Submit A Document', 
-            'page_title'    => 'Submit A Document', 
-            'icon'          => 'icon-file-lines',
-            'access'        => 'true'
-        ],
+        ]
     ]
 ];
+
+if(in_array('document-library-pro/document-library-pro.php', apply_filters('active_plugins', get_option('active_plugins')))){ 
+	$args['tabs']['tab_4'] = [
+		'slug'          => 'submit-document', 
+        'tab_title'     => 'Submit A Document', 
+        'page_title'    => 'Submit A Document', 
+        'icon'          => 'icon-file-lines',
+        'access'        => 'true'
+	];
+}

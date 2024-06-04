@@ -156,7 +156,7 @@ if ( function_exists('acf_add_options_page') ) {
 		'page_title' 	=> 'Global Settings',
 		'menu_title'	=> 'Global Settings',
 		'menu_slug' 	=> 'global-settings',
-		'capability'	=> 'edit_posts',
+		'capability'	=> 'update_plugins',
 		'position'		=> 59,
 		'icon_url'		=> 'dashicons-admin-site',
 		'redirect'		=> true,

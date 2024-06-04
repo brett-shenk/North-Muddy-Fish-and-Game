@@ -195,6 +195,10 @@ add_action( 'admin_menu', function(){
 		remove_menu_page( 'edit.php?post_type=acf-field-group' );											// ACF Settings
 	}
 
+	if( allow_user(2) ){
+		remove_menu_page('document_library_pro');
+	}
+
 	# Meta box Removals
 	// remove_meta_box( 'authordiv', 'page', 'normal' );			// author
 }, 999 );

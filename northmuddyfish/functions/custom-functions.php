@@ -7,16 +7,17 @@ function clean_hex( $input ){
     return $clean;
 }
 
-add_filter('dlp_form_wp_editor_args', function( $editor ){
-	$editor["tinymce"]["toolbar1"] = 'bold,italic,|,underline,strikethrough,|,bullist,numlist,|,link,unlink,|,undo,redo';
-	return $editor;
-});
+if(in_array('document-library-pro/document-library-pro.php', apply_filters('active_plugins', get_option('active_plugins')))){ 
+	add_filter('dlp_form_wp_editor_args', function( $editor ){
+		$editor["tinymce"]["toolbar1"] = 'bold,italic,|,underline,strikethrough,|,bullist,numlist,|,link,unlink,|,undo,redo';
+		return $editor;
+	});
 
-add_filter( 'document_library_pro_language_defaults', function( $defaults ){
-    $defaults['zeroRecords'] = 'Sorry, no documents found.'; 
-    return $defaults; 
-} );
-
+	add_filter( 'document_library_pro_language_defaults', function( $defaults ){
+		$defaults['zeroRecords'] = 'Sorry, no documents found.'; 
+		return $defaults; 
+	} );
+}
 
 /**
  * @package 		Format Content to be displayed
